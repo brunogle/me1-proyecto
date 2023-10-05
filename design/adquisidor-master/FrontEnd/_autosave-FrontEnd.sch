@@ -1,0 +1,229 @@
+EESchema Schematic File Version 5
+EELAYER 43 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 6
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+Comment5 ""
+Comment6 ""
+Comment7 ""
+Comment8 ""
+Comment9 ""
+$EndDescr
+Connection ~ 7750 2000
+Wire Wire Line
+	3300 6850 3700 6850
+Wire Wire Line
+	3300 6950 4050 6950
+Wire Wire Line
+	3300 7050 4050 7050
+Wire Wire Line
+	3405 4970 3610 4970
+Wire Wire Line
+	3405 5070 4050 5070
+Wire Wire Line
+	3405 5170 4050 5170
+Wire Wire Line
+	3430 4020 3940 4020
+Wire Wire Line
+	3490 3130 4025 3130
+Wire Wire Line
+	3490 3230 4025 3230
+Wire Wire Line
+	3535 3505 3535 3920
+Wire Wire Line
+	3535 3920 3430 3920
+Wire Wire Line
+	3610 4710 3825 4710
+Wire Wire Line
+	3610 4970 3610 4710
+Wire Wire Line
+	3700 6850 3700 6350
+Wire Wire Line
+	3825 4710 3825 4755
+Wire Wire Line
+	3905 6350 3700 6350
+Wire Wire Line
+	3905 6415 3905 6350
+Wire Wire Line
+	3940 3610 3940 4020
+Wire Wire Line
+	4025 3505 3535 3505
+Wire Wire Line
+	4025 3610 3940 3610
+Wire Wire Line
+	5720 3535 6670 3535
+Wire Wire Line
+	5750 5045 7960 5045
+Wire Wire Line
+	5750 6700 6700 6700
+Wire Wire Line
+	6670 3535 6670 4820
+Wire Wire Line
+	6670 4820 7960 4820
+Wire Wire Line
+	6700 5750 7960 5750
+Wire Wire Line
+	6700 6700 6700 5750
+Wire Wire Line
+	6895 3325 5720 3325
+Wire Wire Line
+	6895 4645 6895 3325
+Wire Wire Line
+	7750 1900 7750 2000
+Wire Wire Line
+	7750 2000 7750 2150
+Wire Wire Line
+	7960 4645 6895 4645
+Wire Wire Line
+	8150 1800 7750 1800
+Text Label 3400 6850 0    60   ~ 0
+GNDA
+Text Label 3430 7050 0    60   ~ 0
+GRD
+Text Label 3455 6950 0    60   ~ 0
+sIN
+$Comp
+L FrontEnd-rescue:GNDA #PWR03
+U 1 1 5BB47C0E
+P 3825 4755
+F 0 "#PWR03" H 3825 4505 50  0001 C CNN
+F 1 "GNDA" H 3825 4605 50  0000 C CNN
+F 2 "" H 3825 4755 50  0000 C CNN
+F 3 "" H 3825 4755 50  0000 C CNN
+	1    3825 4755
+	1    0    0    -1  
+$EndComp
+$Comp
+L FrontEnd-rescue:GNDA #PWR02
+U 1 1 5BB1EC04
+P 3905 6415
+F 0 "#PWR02" H 3905 6165 50  0001 C CNN
+F 1 "GNDA" H 3905 6265 50  0000 C CNN
+F 2 "" H 3905 6415 50  0000 C CNN
+F 3 "" H 3905 6415 50  0000 C CNN
+	1    3905 6415
+	1    0    0    -1  
+$EndComp
+$Comp
+L FrontEnd-rescue:GND #PWR01
+U 1 1 5B9D967C
+P 7750 2150
+F 0 "#PWR01" H 7750 1900 50  0001 C CNN
+F 1 "GND" H 7750 2000 50  0000 C CNN
+F 2 "" H 7750 2150 50  0000 C CNN
+F 3 "" H 7750 2150 50  0000 C CNN
+	1    7750 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L FrontEnd-rescue:CONN_01X02 J4
+U 1 1 5BB46624
+P 3230 3970
+F 0 "J4" H 3230 4120 50  0000 C CNN
+F 1 "CONN_01X02" V 3330 3970 50  0000 C CNN
+F 2 "Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 3230 3970 50  0001 C CNN
+F 3 "" H 3230 3970 50  0000 C CNN
+	1    3230 3970
+	-1   0    0    1   
+$EndComp
+$Comp
+L FrontEnd-rescue:CONN_01X02 J5
+U 1 1 5BB48DCC
+P 3290 3180
+F 0 "J5" H 3290 3330 50  0000 C CNN
+F 1 "CONN_01X02" V 3390 3180 50  0000 C CNN
+F 2 "Terminal_Blocks:TerminalBlock_bornier-2_P5.08mm" H 3290 3180 50  0001 C CNN
+F 3 "" H 3290 3180 50  0000 C CNN
+	1    3290 3180
+	-1   0    0    1   
+$EndComp
+$Comp
+L FrontEnd-rescue:CONN_01X03 J2
+U 1 1 5B9A9D5F
+P 3100 6950
+F 0 "J2" H 3100 7250 50  0000 C CNN
+F 1 "CONN_01X03" V 3200 6950 50  0000 C CNN
+F 2 "Triaxial:Triaxial_PAD" H 3100 6950 50  0001 C CNN
+F 3 "" H 3100 6950 50  0000 C CNN
+	1    3100 6950
+	-1   0    0    1   
+$EndComp
+$Comp
+L FrontEnd-rescue:CONN_01X03 J1
+U 1 1 5BB42594
+P 3205 5070
+F 0 "J1" H 3205 5370 50  0000 C CNN
+F 1 "CONN_01X03" V 3305 5070 50  0000 C CNN
+F 2 "Triaxial:Triaxial_PAD" H 3205 5070 50  0001 C CNN
+F 3 "" H 3205 5070 50  0000 C CNN
+	1    3205 5070
+	-1   0    0    1   
+$EndComp
+$Comp
+L FrontEnd-rescue:BARREL_JACK J6
+U 1 1 5B9D953E
+P 7450 1900
+F 0 "J6" H 7450 2150 50  0000 C CNN
+F 1 "BARREL_JACK" H 7450 1700 50  0000 C CNN
+F 2 "Connect:BARREL_JACK" H 7450 1900 50  0001 C CNN
+F 3 "" H 7450 1900 50  0000 C CNN
+	1    7450 1900
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 7960 4460 1540 1340
+U 5BA10CE1
+F0 "ADC y salida SPI" 60
+F1 "ADC.sch" 60
+F2 "VoAVS" I L 7960 5045 60 
+F3 "VoRMS" I L 7960 5750 60 
+F4 "VoFF1" I L 7960 4820 60 
+F5 "VoFF2" I L 7960 4645 60 
+$EndSheet
+$Sheet
+S 4050 4570 1700 1200
+U 5B9D77B6
+F0 "Campo Cercano_AVS" 60
+F1 "EAI.sch" 60
+F2 "GRD1" I L 4050 5170 60 
+F3 "sIN1" I L 4050 5070 60 
+F4 "VoAVS" O R 5750 5045 60 
+$EndSheet
+$Sheet
+S 4050 6350 1700 1200
+U 5B9A9BEF
+F0 "Campo Cercano_RMS" 60
+F1 "EAII.sch" 60
+F2 "GRD2" I L 4050 7050 60 
+F3 "sIN2" I L 4050 6950 60 
+F4 "VoRMS" O R 5750 6700 60 
+$EndSheet
+$Sheet
+S 4025 2510 1695 1205
+U 5BB40FF9
+F0 "CampoLejano1" 60
+F1 "IAmp1.sch" 60
+F2 "sIN3" I L 4025 3230 60 
+F3 "sIN4" I L 4025 3610 60 
+F4 "VoFF1" I R 5720 3535 60 
+F5 "VoFF2" I R 5720 3325 60 
+F6 "sIN3n" I L 4025 3130 60 
+F7 "sIN4n" I L 4025 3505 60 
+$EndSheet
+$Sheet
+S 8150 1450 1700 1200
+U 5B9A9C3D
+F0 "Fuente de Alimentacion" 60
+F1 "Alimentacion.sch" 60
+F2 "Valim" I L 8150 1800 60 
+$EndSheet
+$EndSCHEMATC

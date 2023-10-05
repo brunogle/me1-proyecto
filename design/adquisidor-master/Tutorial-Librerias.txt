@@ -1,0 +1,45 @@
+********************************************************************************
+*  Instrucciones para agregar el simbolo y footprint de un componente al kicad *
+********************************************************************************
+-Ir a la pagina del fabricante, buscar y descargar el archivo *.bxl* del componente el cual debe estar en la seccion de footprints o CAD.
+
+-Descargar e instalar el Ultra Librarian. De esta pagina de Analog se puede: http://www.analog.com/en/design-center/packaging-quality-symbols-footprints/symbols-and-footprints/ADA4530-1.html
+
+-Abrir el *.bxl* con el Ultra Librarian y elegir a que herramienta se lo quiere convertir. En este caso tildar kicad y convertir. 
+
+-El Ultra Librarian deja los archivos generados aca: [DISCO]:\Program Files (x86)\Ultra Librarian\Library\Exported\KiCad\[FECHA]\symbols.lib
+ 
+-Recomendación: Crear una carpeta con el nombre del componente a agregar en la misma carpeta del proyecto. En esa carpeta meter el archivo *.lib* y el *.kicad_mod* y renombrarlos con el nombre del componente por comodidad.
+
+**************************************************
+*** Importar la libreria de simbolos al KiCad: *** 
+**************************************************
+1. Abrir KiCad.
+2. En herramientas(program/tool list) abrir Eeschema.
+3. En preferencias(Preferences) abrir Libreria de componentes(Library).
+4. Elegir Añadir(Add) y buscar el archivo *.lib*.
+5. Listo
+**************************************************************
+**Importar la libreria de footprints/patterns al KiCad:**
+**************************************************************
+1. Abrir KiCad.
+2. En herramientas(program/tool list) abrir Pcbnew.
+3. Ir a preferencias y abrir el asistente de librerías de huellas.
+4. Elegir usar archivo en mi PC, y hay q seleccionar la carpeta que contiene el archivo *.kicad_mod*.
+5. Listo.
+
+
+
+
+Creando componentes a manopla:
+
+1. Entrar al Part Library Editor
+2. Create new component
+3. lo creas y le das a save current library to new library (va a saltar algo a lo que no le tenes que dar pelota)
+4. preferencias -> component library -> add; busca el .lib en la carpeta del proyecto, seleccionalo y te va a aparecer al fondo de la lista, "OK"
+	Ahora kicad sabe donde esta la libreria, falta setearla como un libreria de trabajo
+5.File -> current Library; elegi tu componente y te va a aparecer arriba en el marco de la pantalla la ruta de tu libreria
+6. Editas, guardas y listo
+
+
+

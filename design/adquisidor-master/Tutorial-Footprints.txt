@@ -1,0 +1,8 @@
+Run footprint editor
+file->new footprint, dale nombre
+file->safe footprint in new library
+preferences->footprint library manager-> apend with wizard->next->brow your directory (.pretty) y listo
+file->set active library; elegi la tuya
+ahora te aparece como que estas trabajando en tu libreria
+Listorti
+

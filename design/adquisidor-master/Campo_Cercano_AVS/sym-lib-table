@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name EAI-rescue)(type Legacy)(uri ${KIPRJMOD}/EAI-rescue.lib)(options "")(descr ""))
+)

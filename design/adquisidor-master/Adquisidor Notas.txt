@@ -1,0 +1,36 @@
+#ADS1294 datasheet hoja 12: 7.3 Recommended Operating Conditions
+ANALOG INPUTS
+Full-scale differential input voltage range (AINP – AINN): ±V REF / Gain [V]
+
+#ADS1294 datasheet hoja 87:
+A second strategy for maintaining a valid common-mode voltage is to ac-couple the analog inputs, which is especially useful when a patient-drive electrode is not in use. A dc blocking capacitor combined with a voltagedivider between the analog power supplies, or a pullup resistor to set the DC bias to a known point, effectively makes sure that the dc common-mode voltage never drifts. Applications that do not use a patient-drive electrode may still use the RLD amplifier on the ADS129x as a buffered midsupply voltage to bias the inputs. Take care when choosing the passive components because the capacitor and the resistors form an RC high-pass filter. If passive components are chosen poorly, the filter undesirably attenuates frequencies at the lower end of the signal band. Figure 95 shows an example of this configuration.
+
+#ADS1294 datasheet hoja 35: (Tener en cuenta)
+9.3.1.7.2 Input Multiplexer (Measuring The Right Leg Drive Signal)
+The RLDOUT signal can also be routed to a channel (that is not used for the calculation of RLD) for
+measurement. Figure 34 shows the register settings to route the RLDIN signal to channel 8. The measurement is
+done with respect to the voltage on the RLDREF pin. If RLDREF is set to internal, it is at (AVDD + AVSS) / 2.
+This feature is useful for debugging purposes during product development.
+
+#ADS1294 datasheet hoja 33: 9.3.1.6 Reference
+Evaluar la referencia
+
+#ADS1294 datasheet hoja 28: 9.3.1.3.1 Device Noise Measurements
+Setting CHnSET[2:0] = 001 sets the common-mode voltage of (AVDD – AVSS) / 2 to both inputs of the channel. Use this setting to test the inherent noise of the device.
+
+#ADS1294 datasheet hoja 13: 7.5 Electrical Characteristics
+ADC PERFORMANCE
+		Data rates up to 8 kSPS, no missing codes 	24 Bits
+Resolution 	16-kSPS data rate 				19 Bits
+		32-kSPS data rate 				17 Bits
+
+#ADS1294 datasheet hoja 96: 11.1 Power-Up Sequencing
+Before device power up, all digital and analog inputs must be low. At the time of power up, keep all of these signals low until the power supplies have stabilized, as shown in Figure 105.
+Allow time for the supply voltages to reach their final value, and then begin supplying the master clock signal to the CLK pin. Wait for time t POR , then transmit a reset pulse using either the RESET pin or RESET command to initialize the digital portion of the chip. Issue the reset after t POR or after the VCAP1 voltage is greater than 1.1 V, whichever time is longer. Note that:
+• t POR is described in Table 38.
+• The VCAP1 pin charge time is set by the RC time constant; see Figure 31.
+After releasing the RESET pin, program the configuration registers; see the CONFIG1: Configuration Register 1 (address = 01h) (reset = 06h) section for details. The power-up sequence timing is shown in Table 38.
+
+Y ver tambien 11 Power Supply Recommendations, 11.2 y 11.3
+Y 12 Layouts
+Revisar 13 Device and Documentation Support. Hay cosas para el ADS1294

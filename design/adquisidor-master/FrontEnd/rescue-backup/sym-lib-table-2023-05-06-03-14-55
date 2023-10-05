@@ -1,0 +1,9 @@
+(sym_lib_table
+  (lib (name FrontEnd-rescue)(type Legacy)(uri ${KIPRJMOD}/FrontEnd-rescue.lib)(options "")(descr ""))
+  (lib (name ADA4530_1ARZ)(type Legacy)(uri ${KIPRJMOD}/ADA4530-lib/ADA4530_1ARZ.lib)(options "")(descr ""))
+  (lib (name TLC2272_D_8)(type Legacy)(uri ${KIPRJMOD}/TLC2272-lib/TLC2272_D_8.lib)(options "")(descr ""))
+  (lib (name ADS1294)(type Legacy)(uri ${KIPRJMOD}/ADS1294-lib/ADS1294.lib)(options "")(descr ""))
+  (lib (name LM2776)(type Legacy)(uri ${KIPRJMOD}/LM2776-lib/LM2776.lib)(options "")(descr ""))
+  (lib (name TPS561208)(type Legacy)(uri ${KIPRJMOD}/TPS561208-lib/TPS561208.lib)(options "")(descr ""))
+  (lib (name INA828IDR)(type Legacy)(uri ${KIPRJMOD}/INA828-lib/INA828IDR.lib)(options "")(descr ""))
+)

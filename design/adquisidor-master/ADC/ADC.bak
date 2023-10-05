@@ -1,0 +1,106 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:ADS1294_PAG_64
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ADS1294_PAG_64 U1
+U 1 1 5B8D8034
+P 4055 2315
+F 0 "U1" H 5855 2715 60  0000 C CNN
+F 1 "ADS1294_PAG_64" H 5855 2615 60  0000 C CNN
+F 2 "ADS1294-lib:ADS1294_PAG_64" H 5855 2555 60  0001 C CNN
+F 3 "" H 4055 2315 60  0000 C CNN
+	1    4055 2315
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7655 3115 7795 3115
+Wire Wire Line
+	7795 3115 7795 1765
+Wire Wire Line
+	7795 1765 3880 1765
+Wire Wire Line
+	3880 1765 3880 3015
+Wire Wire Line
+	3880 3015 4055 3015
+Wire Wire Line
+	3880 2915 4055 2915
+Connection ~ 3880 2915
+Wire Wire Line
+	3880 2815 4055 2815
+Connection ~ 3880 2815
+Wire Wire Line
+	4055 2715 3880 2715
+Connection ~ 3880 2715
+Wire Wire Line
+	4055 2615 3880 2615
+Connection ~ 3880 2615
+Wire Wire Line
+	4055 2515 3880 2515
+Connection ~ 3880 2515
+Wire Wire Line
+	4055 2415 3880 2415
+Connection ~ 3880 2415
+Wire Wire Line
+	4055 2315 3880 2315
+Connection ~ 3880 2315
+Text Label 4205 1765 0    60   ~ 0
+AVDD
+Wire Wire Line
+	4055 4115 3880 4115
+Wire Wire Line
+	3880 3010 3880 4415
+Connection ~ 3880 3010
+Wire Wire Line
+	3880 4315 4055 4315
+Connection ~ 3880 4115
+Wire Wire Line
+	3880 4415 4055 4415
+Connection ~ 3880 4315
+Wire Wire Line
+	7655 2815 7795 2815
+Wire Wire Line
+	7795 2815 7795 2810
+Connection ~ 7795 2810
+$EndSCHEMATC
