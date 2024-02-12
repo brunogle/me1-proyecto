@@ -1,8 +1,0 @@
-../Core/Src/ads1294.c:16:6:ads_setup_pins	1
-../Core/Src/ads1294.c:22:6:ads_hard_reset	1
-../Core/Src/ads1294.c:29:6:ads_set_start	1
-../Core/Src/ads1294.c:33:6:ads_unset_start	1
-../Core/Src/ads1294.c:37:6:ads_set_spi_port	1
-../Core/Src/ads1294.c:41:6:ads_set_single_reg	1
-../Core/Src/ads1294.c:58:9:ads_get_single_rseg	1
-../Core/Src/ads1294.c:76:6:ads_send_command	1

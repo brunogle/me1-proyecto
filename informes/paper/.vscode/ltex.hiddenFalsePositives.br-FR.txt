@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_BR_FR","sentence":"^\\QSTM32 Nucleo-64 development board\\E$"}

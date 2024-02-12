@@ -1,0 +1,2 @@
+{"rule":"MORFOLOGIK_RULE_NL_NL","sentence":"^\\QData Sheet ADA4530-1\\E$"}
+{"rule":"MORFOLOGIK_RULE_NL_NL","sentence":"^\\QData Sheet ADS111x\\E$"}

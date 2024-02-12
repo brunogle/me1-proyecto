@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name ADS1294-lib)(type KiCad)(uri "$(KIPRJMOD)\\ADS1294-lib")(options "")(descr ""))
-)

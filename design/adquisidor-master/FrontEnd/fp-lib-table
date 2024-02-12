@@ -1,8 +1,0 @@
-(fp_lib_table
-  (lib (name TLC2272-lib)(type KiCad)(uri "$(KIPRJMOD)\\TLC2272-lib")(options "")(descr ""))
-  (lib (name ADS1294-lib)(type KiCad)(uri "$(KIPRJMOD)\\ADS1294-lib")(options "")(descr ""))
-  (lib (name LM2776-lib)(type KiCad)(uri "$(KIPRJMOD)\\LM2776-lib")(options "")(descr ""))
-  (lib (name INA828-lib)(type KiCad)(uri "$(KIPRJMOD)\\INA828-lib")(options "")(descr ""))
-  (lib (name Triaxial)(type KiCad)(uri "$(KIPRJMOD)\\Triaxial.pretty")(options "")(descr ""))
-  (lib (name Logo)(type KiCad)(uri "$(KIPRJMOD)\\Logo.pretty")(options "")(descr ""))
-)
