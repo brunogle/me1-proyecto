@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1707766973 "main.aux" "main.bbl" "main" 1707773187 0
+["bibtex main"] 1707777037 "main.aux" "main.bbl" "main" 1707777355 0
   "./references.bib" 1707765856 2091 d8575023e0083c6223dae52fc03a4295 ""
   "/usr/share/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1704400182 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1707773186 4540 d4825e1edaf6488e4f3bf3cfaac04093 "pdflatex"
+  "main.aux" 1707777355 4544 2bbb8dc49346a153bbb55c56baf9ee39 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1707773183 "/home/bruno/FactCore/brucloud/utn/me1/proyecto/informes/paper/main.tex" "main.pdf" "main" 1707773187 0
-  "/home/bruno/FactCore/brucloud/utn/me1/proyecto/informes/paper/main.tex" 1707769125 27191 b15c87b69d7a208245ae5dd6b714b127 ""
+["pdflatex"] 1707777355 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "main.pdf" "main" 1707777355 0
+  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1707777354 27037 c29031c96ccbc041949bfa476d739d48 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1704400182 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1704400182 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1704400182 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -102,8 +102,8 @@
   "/usr/share/texmf-dist/tex/latex/sttools/stfloats.sty" 1704400182 24057 ff20efb65b128d27c08eac20ec07f540 ""
   "/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1704400182 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1704400182 40684 9b9ec0b4288972636ff6a3b9c4238efc ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1707302661 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1707302623 6768068 ba4be8c2ea40b8d7ed18c18953467c17 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1707314484 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1707314463 6768065 9d0d26c1aa94c5e8b09c7db466f96fca ""
   "figs/512px-EKG_Complex_en.svg.png" 1707490904 26341 44138149d9a95854357b4a6ad30af9f0 ""
   "figs/etapa_analogica.png" 1707757104 55388 86a7d83c83b572f7f466c210b9af069c ""
   "figs/foto_calibracion.jpeg" 1707522026 353943 42bbdc974e5e3c012dc80bc208b10c1e ""
@@ -112,9 +112,9 @@
   "figs/plot_error_con_calib.png" 1707769086 68325 d890a039783fc52fca2c265ad1d28dc7 ""
   "figs/plot_error_sin_calib.png" 1707769092 61454 12ef8c586f32cf967f9d38a096c1b5c6 ""
   "figs/ubiacion_electrodos.png" 1707705472 37236 f6a417e65ab83ee7d6de3423fd977513 ""
-  "main.aux" 1707773186 4540 d4825e1edaf6488e4f3bf3cfaac04093 "pdflatex"
-  "main.bbl" 1707766973 3125 867750fead5ebc8cdd0d3c2c1c17617b "bibtex main"
-  "main.tex" 1707769125 27191 b15c87b69d7a208245ae5dd6b714b127 ""
+  "main.aux" 1707777355 4544 2bbb8dc49346a153bbb55c56baf9ee39 "pdflatex"
+  "main.bbl" 1707777037 3125 867750fead5ebc8cdd0d3c2c1c17617b "bibtex main"
+  "main.tex" 1707777354 27037 c29031c96ccbc041949bfa476d739d48 ""
   (generated)
   "main.aux"
   "main.log"
