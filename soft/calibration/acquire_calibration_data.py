@@ -26,21 +26,16 @@ sample_duration = 10 # Duracion de muestras en segundos
 
 # Sistema de archivos
 
-output_folder = "./data"
+output_folder = "./calibration_data"
 
-
-# Parametro de monitor cardiaco
-
-sample_rate = 408
-
-def setup_arb_ecg(agilent_33522a_instr, heart_rate, amplitude, sample_rate = 2000):
+def setup_arb_ecg(arb_instrument, heart_rate, amplitude, sample_rate = 2000):
     '''
     Crea una coneccion con el generador de ondas arbitrario Agilent 33522A
     y lo configura para generar una señal ECG de una determinada frecuencia
     y amplitud
 
     Parametros:
-
+    arb_instrument: Objeto de comunicacion con el generador arbitrario
     heart_rate: frecuencia cardiaca en BPM
     amplitude: amplitud pico en volts
     sample_rate=2000: frecuencia de muestreo de salida
@@ -49,8 +44,8 @@ def setup_arb_ecg(agilent_33522a_instr, heart_rate, amplitude, sample_rate = 200
     '''
     
     ecg_signal = custom_generate_ecg(heart_rate, sample_rate)
-    agilent_33522a_instr.load_arb_waveform(ecg_signal)
-    agilent_33522a_instr.start_arb_wave(sample_rate, amplitude)
+    arb_instrument.load_arb_waveform(ecg_signal)
+    arb_instrument.start_arb_wave(sample_rate, amplitude)
 
 
 def custom_generate_ecg(heart_rate, sampling_rate, noise=0, heart_rate_std=0):
@@ -134,7 +129,7 @@ def read_from_serial(serial_device, duration):
                 #pass
         
 
-    #Descarto primer muestra, puede ser erronea
+    #Descarto primer segundo, puede ser erronea
     v = v[1000:]
 
     return v
@@ -142,28 +137,6 @@ def read_from_serial(serial_device, duration):
 
 num_heart_rates = len(test_heart_rates)
 num_amplitudes = len(test_amplitudes)
-'''
-for i_amp, amplitude in zip(range(num_amplitudes), test_amplitudes):
-    for i_rate, heart_rate in zip(range(num_heart_rates), test_heart_rates):
- 
-        ecg_signal = custom_generate_ecg(heart_rate, sample_rate)
-
-        ecg_signal = ecg_signal - np.mean(ecg_signal)
-
-        ecg_signal_peak = max(np.abs(ecg_signal))
-
-        ecg_signal /= ecg_signal_peak
-        ecg_signal *= amplitude
-
-
-        amp_rms = np.sqrt(np.mean(ecg_signal**2))
-
-        print(str(heart_rate) + "-" + str(amplitude) + ":  " + str(amp_rms))
-
-
-input()
-quit()
-'''
 
 
 serial_device = serial.Serial(serial_device_str, baudrate=115200)

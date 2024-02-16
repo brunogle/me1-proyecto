@@ -11,8 +11,6 @@ import pyqtgraph as pg
 import serial.tools.list_ports
 import serial
 
-import neurokit2 as nk
-
 import numpy as np
 
 from scipy import signal

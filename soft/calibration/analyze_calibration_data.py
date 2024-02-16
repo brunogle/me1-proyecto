@@ -10,17 +10,30 @@ import pickle
 import warnings
 from scipy import signal
 
-calib_data_folder = "./data_calib"
-test_data_folder = "./data_test"
 
-calib_pickle_file = "./pickles/calib_labeled_measurements.pickle"
+# Ubicación de los datos producidos por acquire_calibration_data.py
+data_folder = "./calibration_data"
+
+
+# Cantidad de muestras por cada tipo de parametros usadas para la calibracion
+# El resto se utilizan para probar la calibracion.abs
+calib_sample_size = 5 
+
+
+sample_rate = 500 # Frecuencia de muestreo teorico del ADC
+
+amp_gain = 8.631 # Ganancia teorica de la etapa analogica
+
+
+
+progress = False
+
+calib_pickle_file = "./pickles/calib_labeled_measurements.pickle" 
 test_pickle_file = "./pickles/test_labeled_measurements.pickle"
-
-sample_rate = 500
 
 update_measurement_pickles = True
 
-amp_gain = 8.631
+
 
 def filter_signal(waveform):
 
@@ -51,18 +64,24 @@ def read_file(filename):
 def read_all_waveforms(folder):
     filenames = [join(folder, f) for f in listdir(folder) if isfile(join(folder, f))]
 
-    labeled_data = []
+    calib_labeled_data = []
+    test_labeled_data = []
 
     for filename in filenames:
         split_filename = re.split('/|-|.txt', filename)
+        sample_num = int(split_filename[-4])
         heart_rate = float(split_filename[-3])
         amplitude = float(split_filename[-2])
-        print("Reading " + str(heart_rate) + "BMP @" + str(amplitude) + "Vp")
+        if progress:
+            print("Reading " + str(heart_rate) + "BMP @" + str(amplitude) + "Vp")
         data = read_file(filename)
-        labeled_data.append({"heart_rate":heart_rate, "amplitude":amplitude, "data":data})
 
+        if sample_num <= calib_sample_size:
+            calib_labeled_data.append({"heart_rate":heart_rate, "amplitude":amplitude, "data":data})
+        else:   
+            test_labeled_data.append({"heart_rate":heart_rate, "amplitude":amplitude, "data":data})
 
-    return labeled_data
+    return calib_labeled_data, test_labeled_data
 
 def analyze_ecg(waveform, sample_rate, time_correcction=1, amp_correction=1):
 
@@ -110,7 +129,9 @@ def analyze_labeled_data(labeled_data, sample_rate, time_correcction=1, amp_corr
     for data in labeled_data:
         i += 1
 
-        print("Analyzing " + str(i) + "/" + str(len(labeled_data)) + "   "  + str(data['heart_rate']) + "BMP @" + str(data['amplitude']) + "Vp")
+        if progress:
+            print("Analyzing " + str(i) + "/" + str(len(labeled_data)) + "   "  + str(data['heart_rate']) + "BMP @" + str(data['amplitude']) + "Vp")
+        
         heart_rate, amplitude = analyze_ecg(data["data"], sample_rate, time_correcction, amp_correction)
 
         if (data['heart_rate'],data['amplitude']) not in labeled_measurements:
@@ -228,7 +249,7 @@ calib_labeled_measurements = None
 test_labeled_measurements = None
 
 if update_measurement_pickles:
-    calib_data = read_all_waveforms(calib_data_folder)
+    calib_data, test_data = read_all_waveforms(data_folder)
     calib_labeled_measurements = analyze_labeled_data(calib_data, sample_rate)
     with open(calib_pickle_file, 'wb') as labeled_measurements_pickle_calib:
         pickle.dump(calib_labeled_measurements, labeled_measurements_pickle_calib)
@@ -273,13 +294,10 @@ print("Factor correccion temporal: " + str(round(hr_calibration,10)) + " ± " + 
 
 print("Factor correccion amplitud: " + str(round(amp_calibration,10)) + " ± " + str(round(k*np.std(amp_error_list),6))
                                      + "  (k=" + str(k) + "  nu=" + str(len(amp_error_list)-1) + ")")
-                
-print("Corrected sample rate: " + str(hr_calibration*sample_rate))
 
 
 
 if update_measurement_pickles:
-    test_data = read_all_waveforms(test_data_folder)
     test_labeled_measurements = analyze_labeled_data(test_data, sample_rate, hr_calibration, amp_calibration)
 
     with open(test_pickle_file, 'wb') as labeled_measurements_pickle_calib:
@@ -305,16 +323,7 @@ plot_error_maps(calibrated_heart_rate_error_map, calibrated_amplitude_error_map,
 
 
 plt.show()
-'''
-labeled_data = read_labeled_data(data_folder)
-wf = labeled_data[4]["data"]
-wf = wf - np.min(wf)
 
-print(labeled_data[4]["amplitude"])
-
-plt.plot(wf)
-plt.show()
-'''
 
 
 input()
