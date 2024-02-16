@@ -140,7 +140,7 @@ void TIM4_IRQHandler(TIM_HandleTypeDef *htim){
   if(TIM4->SR & TIM_SR_UIF)
   {
 
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, 1);
 
 	uint8_t i2c_tx_data[3];
 
@@ -150,8 +150,9 @@ void TIM4_IRQHandler(TIM_HandleTypeDef *htim){
 
 
 	HAL_I2C_Master_Transmit(&hi2c1, CONTROL_BYTE_W, i2c_tx_data, 3*8, HAL_MAX_DELAY);
-
+	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, 0);
 	TIM4->SR &= 0;
+
   }
 
 }

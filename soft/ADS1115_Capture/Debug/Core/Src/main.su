@@ -2,9 +2,9 @@
 ../Core/Src/main.c:83:6:ADS1115_INIT	24	static
 ../Core/Src/main.c:118:6:HAL_GPIO_EXTI_Callback	56	static
 ../Core/Src/main.c:139:6:TIM4_IRQHandler	32	static
-../Core/Src/main.c:167:5:main	8	static
-../Core/Src/main.c:230:6:SystemClock_Config	88	static
-../Core/Src/main.c:277:13:MX_I2C1_Init	8	static
-../Core/Src/main.c:311:13:MX_USART2_UART_Init	8	static
-../Core/Src/main.c:344:13:MX_GPIO_Init	40	static
-../Core/Src/main.c:389:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:168:5:main	8	static
+../Core/Src/main.c:231:6:SystemClock_Config	88	static
+../Core/Src/main.c:278:13:MX_I2C1_Init	8	static
+../Core/Src/main.c:312:13:MX_USART2_UART_Init	8	static
+../Core/Src/main.c:345:13:MX_GPIO_Init	40	static
+../Core/Src/main.c:390:6:Error_Handler	4	static,ignoring_inline_asm
