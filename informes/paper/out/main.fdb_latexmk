@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1707777037 "main.aux" "main.bbl" "main" 1707777355 0
-  "./references.bib" 1707765856 2091 d8575023e0083c6223dae52fc03a4295 ""
+["bibtex out/main"] 1708145537 "out/main.aux" "out/main.bbl" "out/main" 1708145579 0
+  "./references.bib" 1708135638 2413 f3bc22a59d7a245b9e7798c1e6badb1b ""
   "/usr/share/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1704400182 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "main.aux" 1707777355 4544 2bbb8dc49346a153bbb55c56baf9ee39 "pdflatex"
+  "out/main.aux" 1708145579 4595 bf385c4872b1548fc2a9442786156151 "pdflatex"
   (generated)
-  "main.bbl"
-  "main.blg"
+  "out/main.bbl"
+  "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1707777355 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "main.pdf" "main" 1707777355 0
-  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1707777354 27037 c29031c96ccbc041949bfa476d739d48 ""
+["pdflatex"] 1708145579 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "out/main.pdf" "main" 1708145579 0
+  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1708145578 27295 b42d5d7399ca0b2b22f2087625397926 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1704400182 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1704400182 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1704400182 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -112,11 +112,11 @@
   "figs/plot_error_con_calib.png" 1707769086 68325 d890a039783fc52fca2c265ad1d28dc7 ""
   "figs/plot_error_sin_calib.png" 1707769092 61454 12ef8c586f32cf967f9d38a096c1b5c6 ""
   "figs/ubiacion_electrodos.png" 1707705472 37236 f6a417e65ab83ee7d6de3423fd977513 ""
-  "main.aux" 1707777355 4544 2bbb8dc49346a153bbb55c56baf9ee39 "pdflatex"
-  "main.bbl" 1707777037 3125 867750fead5ebc8cdd0d3c2c1c17617b "bibtex main"
-  "main.tex" 1707777354 27037 c29031c96ccbc041949bfa476d739d48 ""
+  "main.tex" 1708145578 27295 b42d5d7399ca0b2b22f2087625397926 ""
+  "out/main.aux" 1708145579 4595 bf385c4872b1548fc2a9442786156151 "pdflatex"
+  "out/main.bbl" 1708145537 3441 75b256e92ef96ab31de7f9c13310c52b "bibtex out/main"
   (generated)
-  "main.aux"
-  "main.log"
-  "main.pdf"
+  "out/main.aux"
+  "out/main.log"
+  "out/main.pdf"
   (rewritten before read)

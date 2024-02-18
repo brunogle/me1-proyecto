@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2024.2.7)  12 FEB 2024 19:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2024.2.7)  17 FEB 2024 01:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -243,7 +243,7 @@ Package: balance 1999/02/23 4.3 (PWD)
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count284
 \l__pdf_internal_box=\box55
-) (./main.aux)
+) (out/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -290,63 +290,65 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<figs/512px-EKG_Complex_en.svg.png, id=1, 513.92pt x 402.50375pt>
-File: figs/512px-EKG_Complex_en.svg.png Graphic file (type png)
-<use figs/512px-EKG_Complex_en.svg.png>
-Package pdftex.def Info: figs/512px-EKG_Complex_en.svg.png  used on input line 129.
-(pdftex.def)             Requested size: 226.79846pt x 177.63037pt.
+Underfull \vbox (badness 4543) has occurred while \output is active []
+
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
 ]
+<figs/512px-EKG_Complex_en.svg.png, id=11, 513.92pt x 402.50375pt>
+File: figs/512px-EKG_Complex_en.svg.png Graphic file (type png)
+<use figs/512px-EKG_Complex_en.svg.png>
+Package pdftex.def Info: figs/512px-EKG_Complex_en.svg.png  used on input line 130.
+(pdftex.def)             Requested size: 226.79846pt x 177.63037pt.
 <figs/etapa_analogica.png, id=13, 840.13875pt x 248.42813pt>
 File: figs/etapa_analogica.png Graphic file (type png)
 <use figs/etapa_analogica.png>
-Package pdftex.def Info: figs/etapa_analogica.png  used on input line 163.
+Package pdftex.def Info: figs/etapa_analogica.png  used on input line 164.
 (pdftex.def)             Requested size: 516.0pt x 152.57959pt.
- [2 <./figs/512px-EKG_Complex_en.svg.png> <./figs/etapa_analogica.png (PNG copy)>]
-<figs/foto_proyecto.jpeg, id=18, 1443.89438pt x 1084.05pt>
+ [2 <./figs/512px-EKG_Complex_en.svg.png>]
+<figs/foto_proyecto.jpeg, id=19, 1443.89438pt x 1084.05pt>
 File: figs/foto_proyecto.jpeg Graphic file (type jpg)
 <use figs/foto_proyecto.jpeg>
-Package pdftex.def Info: figs/foto_proyecto.jpeg  used on input line 294.
+Package pdftex.def Info: figs/foto_proyecto.jpeg  used on input line 295.
 (pdftex.def)             Requested size: 252.0pt x 189.18227pt.
- [3 <./figs/foto_proyecto.jpeg>]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 342.
+ [3 <./figs/foto_proyecto.jpeg> <./figs/etapa_analogica.png (PNG copy)>]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 343.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 <figs/foto_calibracion.jpeg, id=25, 1925.1925pt x 1445.4pt>
 File: figs/foto_calibracion.jpeg Graphic file (type jpg)
 <use figs/foto_calibracion.jpeg>
-Package pdftex.def Info: figs/foto_calibracion.jpeg  used on input line 385.
+Package pdftex.def Info: figs/foto_calibracion.jpeg  used on input line 386.
 (pdftex.def)             Requested size: 252.0pt x 189.18779pt.
  [4 <./figs/foto_calibracion.jpeg>]
 <figs/plot_error_sin_calib.png, id=32, 867.24pt x 383.031pt>
 File: figs/plot_error_sin_calib.png Graphic file (type png)
 <use figs/plot_error_sin_calib.png>
-Package pdftex.def Info: figs/plot_error_sin_calib.png  used on input line 426.
+Package pdftex.def Info: figs/plot_error_sin_calib.png  used on input line 427.
 (pdftex.def)             Requested size: 516.0pt x 227.9092pt.
 <figs/plot_error_con_calib.png, id=33, 867.24pt x 383.031pt>
 File: figs/plot_error_con_calib.png Graphic file (type png)
 <use figs/plot_error_con_calib.png>
-Package pdftex.def Info: figs/plot_error_con_calib.png  used on input line 490.
+Package pdftex.def Info: figs/plot_error_con_calib.png  used on input line 491.
 (pdftex.def)             Requested size: 516.0pt x 227.9092pt.
 <figs/ubiacion_electrodos.png, id=34, 271.0125pt x 297.36093pt>
 File: figs/ubiacion_electrodos.png Graphic file (type png)
 <use figs/ubiacion_electrodos.png>
-Package pdftex.def Info: figs/ubiacion_electrodos.png  used on input line 501.
+Package pdftex.def Info: figs/ubiacion_electrodos.png  used on input line 502.
 (pdftex.def)             Requested size: 126.0pt x 138.2487pt.
  [5 <./figs/plot_error_sin_calib.png>]
 <figs/graficador_ecg_etiquetado.png, id=44, 493.845pt x 294.34969pt>
 File: figs/graficador_ecg_etiquetado.png Graphic file (type png)
 <use figs/graficador_ecg_etiquetado.png>
-Package pdftex.def Info: figs/graficador_ecg_etiquetado.png  used on input line 523.
+Package pdftex.def Info: figs/graficador_ecg_etiquetado.png  used on input line 524.
 (pdftex.def)             Requested size: 252.0pt x 150.19719pt.
 
 Underfull \vbox (badness 2042) has occurred while \output is active []
 
- [6 <./figs/plot_error_con_calib.png> <./figs/ubiacion_electrodos.png (PNG copy)> <./figs/graficador_ecg_etiquetado.png (PNG copy)>] (./main.bbl
-Underfull \hbox (badness 3861) in paragraph at lines 35--37
+ [6 <./figs/plot_error_con_calib.png> <./figs/ubiacion_electrodos.png (PNG copy)> <./figs/graficador_ecg_etiquetado.png (PNG copy)>] (out/main.bbl
+Underfull \hbox (badness 3396) in paragraph at lines 40--42
 []\OT1/ptm/m/n/8 Q. U. D. of Emer-gency Medicine, ``Anal-y-
  []
 
@@ -362,17 +364,17 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7] (./main.aux) ) 
+[7] (out/main.aux) ) 
 Here is how much of TeX's memory you used:
- 4535 strings out of 477985
- 72130 string characters out of 5840059
- 1869388 words of memory out of 5000000
- 24658 multiletter control sequences out of 15000+600000
+ 4537 strings out of 477985
+ 72173 string characters out of 5840059
+ 1868388 words of memory out of 5000000
+ 24659 multiletter control sequences out of 15000+600000
  554200 words of font info for 118 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 57i,11n,62p,383b,333s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,62p,426b,333s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 1140534 bytes).
+Output written on out/main.pdf (7 pages, 1140575 bytes).
 PDF statistics:
  121 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream

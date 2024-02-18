@@ -9,11 +9,15 @@ import numpy as np
 import pickle
 import warnings
 from scipy import signal
+from pathlib import Path
 
 
 # Ubicación de los datos producidos por acquire_calibration_data.py
 data_folder = "./calibration_data"
 
+
+# Ubicacion de los resultados del analisis
+output_folder = "./output"
 
 # Cantidad de muestras por cada tipo de parametros usadas para la calibracion
 # El resto se utilizan para probar la calibracion.abs
@@ -31,7 +35,7 @@ progress = False
 calib_pickle_file = "./pickles/calib_labeled_measurements.pickle" 
 test_pickle_file = "./pickles/test_labeled_measurements.pickle"
 
-update_measurement_pickles = True
+update_measurement_pickles = False
 
 
 
@@ -215,6 +219,8 @@ def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, ampl
     fig.tight_layout()
     #plt.show()
 
+    return fig
+
 def calculate_error_maps(labeled_measurements):
 
 
@@ -241,6 +247,8 @@ def calculate_error_maps(labeled_measurements):
 
 
 ######## COMPIENZO DE EJECUCION #########
+
+Path(output_folder).mkdir(parents=True, exist_ok=True)
 
 
 # Realizo mediciones si hay que generar los pickes, si no leo directamente los valores de los pickles
@@ -270,7 +278,7 @@ heart_rate_error_map, amplitude_error_map = calculate_error_maps(calib_labeled_m
 heart_rates = sorted(list({x[0] for x in calib_labeled_measurements.keys()}))
 amplitudes = sorted(list({x[1] for x in calib_labeled_measurements.keys()}))
 
-plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, amplitudes, title="")
+calib_error_map_fig = plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, amplitudes, title="")
 
 # Calculo factores de correccion y su incertidumbres
 
@@ -288,13 +296,17 @@ amp_calibration = np.mean(amp_error_list)
 
 k = 2
 
-print("Factor correccion temporal: " + str(round(hr_calibration,10)) + " ± " + str(round(k*np.std(hr_error_list),6))
-                                     + "  (k=" + str(k) + "  nu=" + str(len(hr_error_list)-1) + ")")
+calib_factor_str = ""
+
+calib_factor_str += ("Factor correccion temporal: " + str(round(hr_calibration,10)) + " pm " + str(round(k*np.std(hr_error_list),6))
+                                     + "  (k=" + str(k) + "  nu=" + str(len(hr_error_list)-1) + ")\n")
 
 
-print("Factor correccion amplitud: " + str(round(amp_calibration,10)) + " ± " + str(round(k*np.std(amp_error_list),6))
-                                     + "  (k=" + str(k) + "  nu=" + str(len(amp_error_list)-1) + ")")
+calib_factor_str += ("Factor correccion amplitud: " + str(round(amp_calibration,10)) + " pm " + str(round(k*np.std(amp_error_list),6))
+                                     + "  (k=" + str(k) + "  nu=" + str(len(amp_error_list)-1) + ")\n")
 
+
+print(calib_factor_str)
 
 
 if update_measurement_pickles:
@@ -319,11 +331,12 @@ for items in test_labeled_measurements.items():
 
 calibrated_heart_rate_error_map, calibrated_amplitude_error_map = calculate_error_maps(calibrated_labeled_measurements_test)
 
-plot_error_maps(calibrated_heart_rate_error_map, calibrated_amplitude_error_map, heart_rates, amplitudes, title="")
+test_error_map_fig = plot_error_maps(calibrated_heart_rate_error_map, calibrated_amplitude_error_map, heart_rates, amplitudes, title="")
 
+test_error_map_fig.savefig(output_folder + "/calib_error_map.png")
+test_error_map_fig.savefig(output_folder + "/test_error_map.png")
 
-plt.show()
-
-
+with open(output_folder + "/calib_factors.txt", "w") as out_file:
+    out_file.write(calib_factor_str)
 
 input()

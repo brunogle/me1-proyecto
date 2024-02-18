@@ -16,6 +16,13 @@ import numpy as np
 from scipy import signal
 
 
+# Factores de calibracion
+
+factor_calibracion_amplitud = 0.969 
+
+factor_calibracion_tiempo = 1.01692
+
+
 class QtGraphWidget(QWidget):
     def __init__(self, parent=None):
         super(QtGraphWidget, self).__init__(parent)

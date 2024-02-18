@@ -16,7 +16,7 @@
 
 \begin{document}
 
-
+ 
  
 \title{Lectura y procesamiento digital de señales electrocardiográficas\\
 \thanks{Agradecemos a la Universidad Tecnológica Nacional por permitirnos
@@ -37,7 +37,7 @@ Buenos Aires, Argentina \\
 jonathany@frba.utn.edu.ar
 }
 }
-
+ 
 \maketitle
 
 \begin{abstract}
@@ -54,18 +54,19 @@ ECG, bioengineering, filtering, DSP
 
 \section{Introducción}
  
-La técnica de electrocardiografía (ECG) comienza en los fines del siglo \Romannum{19} con
-métodos basados en galvanómetros especialmente sensibles y rápidos, con los que se
-fue desarrollando los fundamentos de la electrocardiología. Estos métodos fueron
-superados por electrocardiógrafos que utilizaban válvulas termoiónicas para la
-amplificación de las señales, y estas fueron naturalmente remplazadas por el uso
-del transistor. Al día de hoy las señales típicamente son digitalizadas por un
-conversor analógico digital (ADC) y procesadas digitalmente para mejorar su claridad. 
-En la actualidad, existen métodos que un especialista puede utilizar para analizar
-el estado de un corazón a base de las señales obtenidas por un electrocardiógrafo,
-esto típicamente se realiza con mediciones tomadas por múltiples electrodos para
-lograr una mayor discriminación entre las actividades del ciclo cardíaco.
-\cite{ecg_history}
+La técnica de electrocardiografía (ECG) ha experimentado una evolución significativa
+con el desarrollo de técnicas de procesamiento digital de señales. Históricamente,
+la única forma de registrar las mediciones era la impresión en tiempo real de la amplitud
+sobre papel. Si bien este método sigue siendo muy utilizado para mediciones de corto
+plazo, algunas aplicaciones como la electrocardiografía ambulatoria (también conocido como
+monitores Holter) requieren de tomar muestras por periodos largos de tiempo y de forma portátil, para estos casos la electrocardiografía digital es una técnica esencial. Para una descripción en mayor profundidad acerca de la historia y el estado del arte del ECG  el lector puede referirse a las siguientes fuentes: \cite{ecg_history} \cite{ecg_moderno}
+  
+ 
+El objetivo de este trabajo, es el desarrollo de un electrocardiógrafo digital con la
+suficiente fidelidad de señal para distinguir los distintos eventos del ciclo cardíaco.
+Por simplicidad, se decidió utilizar materiales ya presenten en los laboratorios de la
+universidad. Además, se propone un método de calibración en donde utilizando un
+instrumento de referencia, se obtienen dos parámetros de corrección asociados al electrocardiógrafo, que sirven para aplicar una corrección lineal a las mediciones tomadas.
 
 \section{Fundamentos biológicos}
 
@@ -177,21 +178,19 @@ señal de entrada, y tiene que operar con mínimo consumo de corriente de polari
 de entrada, debido a la alta impedancia de salida de la señal.
 
 El diseño de esta etapa puede ser complicada y requiere implementarse en un PCB 
-con consideraciones de diseño especiales. Para optimizar el proceso, decidimos
-reutilizar un módulo para captar señales biológicas diseñado y armado por el grupo
+con consideraciones de diseño especiales. Para optimizar el proceso, se decidió utilizar un módulo para captar señales biológicas diseñado y armado por el grupo
 de investigación \textit{GIBIO} en la UTN-FRBA. Este módulo ya tiene diseñada una
-etapa de entrada completa que podemos utilizar para este propósito y un ADC
-específico para captar señales de ECG, pero desafortunadamente el ADC no se encontraba
-funcionando correctamente, entonces nos vimos obligados a utilizar un ADC externo.
+etapa de entrada completa junto con su circuito de alimentación que se utilizó para este 
+proyecto.
 
 El módulo consiste de una etapa de entrada utilizando el amplificador operacional
-ADA4530 fabricado por Analog Devices como primera etapa, seguido de una etapa de
-filtrado de altas frecuencias, seguido de una etapa de ganancia configurable mediante
-el uso de resistencias variables y finalmente una etapa para desplazar la señal hacia
-valores positivos y centrarla en 1.65 V, esto es necesario, ya que la referencia
+ADA4530 fabricado por Analog Devices \cite{ada4530} como primera etapa, seguido de una
+etapa de filtrado de altas frecuencias, seguido de una etapa de ganancia configurable
+mediante el uso de resistencias variables y finalmente una etapa para desplazar la señal
+hacia valores positivos y centrarla en 1.65 V, esto es necesario, ya que la referencia
 negativa del ADC es de 0 V.
 
-El amplificador operacional ADA4530 \cite{ada4530} es un perfecto candidato para
+El amplificador operacional ADA4530  es un perfecto candidato para
 la primera etapa de amplificación. Tiene una corriente de polarización de entrada de
 20 fA. Además, proporciona un terminal de "guard" que permite reducir las perdidas
 parásitas de la señal hacia la masa del circuito.
@@ -202,12 +201,14 @@ del módulo analógico.
 Un problema de diseño de este módulo, es que no tiene una frecuencia de corte
 superior lo suficientemente baja como para actuar de filtro anti-alias. Esto
 puede ser perjudicial para nuestro objetivo y una nueva iteración del circuito
-resolvería este error, sin embargo, no se cree que esta falla del diseño cause
-mayores complicaciones, debido a que las únicas componentes espectrales por encima
-de la frecuencia de Nyquist del ADC y por debajo de la frecuencia de corte del
-módulo, consisten de ruido uniformemente distribuido, lo cual en efecto, introducirá
-más ruido en la conversión, pero no causará artefactos de alias que puedan
-confundirse con la señal ECG.
+resolvería este error.
+
+% sin embargo, no se cree que esta falla del diseño cause
+% mayores complicaciones, debido a que las únicas componentes espectrales por encima
+% de la frecuencia de Nyquist del ADC y por debajo de la frecuencia de corte del
+% módulo, consisten de ruido uniformemente distribuido, lo cual en efecto, introducirá
+% más ruido en la conversión, pero no causará artefactos de alias que puedan
+% confundirse con la señal ECG.
 
 Dos de las etapas tienen ganancia ajustable mediante el uso de resistencias
 variables. Estas resistencias fueron ajustadas y luego medidas, sus valores se

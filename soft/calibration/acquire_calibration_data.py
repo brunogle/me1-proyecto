@@ -28,6 +28,8 @@ sample_duration = 10 # Duracion de muestras en segundos
 
 output_folder = "./calibration_data"
 
+
+
 def setup_arb_ecg(arb_instrument, heart_rate, amplitude, sample_rate = 2000):
     '''
     Crea una coneccion con el generador de ondas arbitrario Agilent 33522A
@@ -130,25 +132,36 @@ def read_from_serial(serial_device, duration):
         
 
     #Descarto primer segundo, puede ser erronea
-    v = v[1000:]
+    #v = v[1000:]
 
     return v
+
+
 
 
 num_heart_rates = len(test_heart_rates)
 num_amplitudes = len(test_amplitudes)
 
 
+
+# Inicio comunicacion serie
 serial_device = serial.Serial(serial_device_str, baudrate=115200)
 
+
+# Inicio comunicacion VISA
 agilent_33522a_instr = Agilent_33522A()
 agilent_33522a_instr.connect_to_inst(arbitrary_generator_visa_str)
 agilent_33522a_instr.reset()
 
+
+# Contador total de 
 i_run = 0
 num_tests = num_amplitudes*num_heart_rates*samples_per_test
 
+#  Inicio de mediciones
 for i_sample in range(samples_per_test):
+
+    # Iterar por todas las combinaciones de frecuencias cardiacas y amplitudes
     for i_amp, amplitude in zip(range(num_amplitudes), test_amplitudes):
         for i_rate, heart_rate in zip(range(num_heart_rates), test_heart_rates):
             
@@ -157,14 +170,16 @@ for i_sample in range(samples_per_test):
 
             setup_arb_ecg(agilent_33522a_instr, heart_rate, amplitude)
             
-            time.sleep(1)
+            time.sleep(1) # Aseguro que la señal del generador este estable
 
             v =  read_from_serial(serial_device, sample_duration)
-            f = open(output_folder + "/" + str(i_sample+1) + "-"  + str(heart_rate) + "-" + str(amplitude) + ".txt", "w")
+            
+            
+            with open(output_folder + "/" + str(i_sample+1) + "-"  + str(heart_rate) + "-" + str(amplitude) + ".txt", "w") as f:
+                for x in v:
+                    f.write(str(x) + '\n')
 
-            for x in v:
-                f.write(str(x) + '\n')
-            f.close()
 
+# Cierro comunicaciones
 serial_device.close()
 agilent_33522a_instr.close()

@@ -1,0 +1,2 @@
+Factor correccion temporal: 1.0169191523 pm 0.000877  (k=2  nu=124)
+Factor correccion amplitud: 0.9698717141 pm 0.047592  (k=2  nu=124)
