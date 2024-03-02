@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex out/main"] 1708145537 "out/main.aux" "out/main.bbl" "out/main" 1708145579 0
-  "./references.bib" 1708135638 2413 f3bc22a59d7a245b9e7798c1e6badb1b ""
+["bibtex out/main"] 1709409447 "out/main.aux" "out/main.bbl" "out/main" 1709409676 0
+  "./references.bib" 1709402584 3467 72baf6e88c33a5e5799f0ec5f2c54423 ""
   "/usr/share/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1704400182 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "out/main.aux" 1708145579 4595 bf385c4872b1548fc2a9442786156151 "pdflatex"
+  "out/main.aux" 1709409675 5077 2e9ca7670d2cc7a77dd8a12dc460d8bd "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1708145579 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "out/main.pdf" "main" 1708145579 0
-  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1708145578 27295 b42d5d7399ca0b2b22f2087625397926 ""
+["pdflatex"] 1709409675 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "out/main.pdf" "main" 1709409676 0
+  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1709409675 30195 fb002e26e5ddbdb9028f8fdd0826cef6 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1704400182 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1704400182 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1704400182 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -53,6 +53,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1704400182 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb" 1704400182 36912 b448ef9ad9d7228ec3c6e71005136d55 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1704400182 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1704400182 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1704400182 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1704400182 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1704400182 32716 08e384dc442464e7285e891af9f45947 ""
@@ -105,16 +106,16 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1707314484 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1707314463 6768065 9d0d26c1aa94c5e8b09c7db466f96fca ""
   "figs/512px-EKG_Complex_en.svg.png" 1707490904 26341 44138149d9a95854357b4a6ad30af9f0 ""
+  "figs/calib_error_map.png" 1709099938 59238 3c3b2228a77b92b874fee8bfb570337d ""
   "figs/etapa_analogica.png" 1707757104 55388 86a7d83c83b572f7f466c210b9af069c ""
   "figs/foto_calibracion.jpeg" 1707522026 353943 42bbdc974e5e3c012dc80bc208b10c1e ""
   "figs/foto_proyecto.jpeg" 1707506563 321139 68dd6f189b65140fe4fbdaff8040e41b ""
   "figs/graficador_ecg_etiquetado.png" 1707714767 42464 3a81f9f65fac908d75aef2b314cf117c ""
-  "figs/plot_error_con_calib.png" 1707769086 68325 d890a039783fc52fca2c265ad1d28dc7 ""
-  "figs/plot_error_sin_calib.png" 1707769092 61454 12ef8c586f32cf967f9d38a096c1b5c6 ""
+  "figs/test_error_map.png" 1709099939 66218 16ca2a1c315df2bb4a77b0837846fe3d ""
   "figs/ubiacion_electrodos.png" 1707705472 37236 f6a417e65ab83ee7d6de3423fd977513 ""
-  "main.tex" 1708145578 27295 b42d5d7399ca0b2b22f2087625397926 ""
-  "out/main.aux" 1708145579 4595 bf385c4872b1548fc2a9442786156151 "pdflatex"
-  "out/main.bbl" 1708145537 3441 75b256e92ef96ab31de7f9c13310c52b "bibtex out/main"
+  "main.tex" 1709409675 30195 fb002e26e5ddbdb9028f8fdd0826cef6 ""
+  "out/main.aux" 1709409675 5077 2e9ca7670d2cc7a77dd8a12dc460d8bd "pdflatex"
+  "out/main.bbl" 1709409447 3735 f19dff1a1cef982dd5885e4d12ad1d01 "bibtex out/main"
   (generated)
   "out/main.aux"
   "out/main.log"

@@ -37,7 +37,7 @@ Buenos Aires, Argentina \\
 jonathany@frba.utn.edu.ar
 }
 }
- 
+
 \maketitle
 
 \begin{abstract}
@@ -63,7 +63,7 @@ monitores Holter) requieren de tomar muestras por periodos largos de tiempo y de
   
  
 El objetivo de este trabajo, es el desarrollo de un electrocardiógrafo digital con la
-suficiente fidelidad de señal para distinguir los distintos eventos del ciclo cardíaco.
+suficiente fidelidad de señal para distinguir los eventos del ciclo cardíaco.
 Por simplicidad, se decidió utilizar materiales ya presenten en los laboratorios de la
 universidad. Además, se propone un método de calibración en donde utilizando un
 instrumento de referencia, se obtienen dos parámetros de corrección asociados al electrocardiógrafo, que sirven para aplicar una corrección lineal a las mediciones tomadas.
@@ -126,7 +126,7 @@ ciclo cardíaco y como se relacionan con una señal electrocardiográfica:
 
 En la figura \ref{fig:ecg_onda} se muestra un diagrama de una señal ECG típica.
 
-\begin{figure}[thb]
+\begin{figure}[th]
     \centerline{\includegraphics[width=0.9\linewidth]{figs/512px-EKG_Complex_en.svg.png}}
     \caption{Ejemplo de una señal de ECG típica. La última onda "U" no suele ser
     visible debido a su pequeña amplitud, y su naturaleza no está totalmente
@@ -136,7 +136,7 @@ En la figura \ref{fig:ecg_onda} se muestra un diagrama de una señal ECG típica
 
 
 
-\subsection{Características de la señal eléctrica}
+\subsection{Características de la señal eléctrica} \label{electrical_characteristics}
 
 Las señales eléctricas captadas por los electrodos tienen amplitudes en el rango de
 1-3 mV, dependiendo de la ubicación de los electrodos, su tamaño, características
@@ -150,6 +150,15 @@ correcto funcionamiento de un electrocardiógrafo.
 
 \section{Metodología General}
 
+\begin{figure*}[hb]
+    \centering
+    \includegraphics[width=\textwidth]{figs/etapa_analogica.png}
+    \caption{Esquemático simplificado de la etapa analógica del módulo desarrollado 
+    por el GIBIO en la UTN-FRBA.}
+    \label{fig:etapa_analogica_esquematico}
+\end{figure*}
+
+
 \subsection{Objetivo de medición}
 
 Nuestra meta para este trabajo fue el diseño y construcción de un electrocardiógrafo
@@ -159,15 +168,8 @@ lo más precisamente posible.
 
 Por simplicidad, se eligió que su entrada sea de única derivación (un solo par de
 electrodos).
-\begin{figure*}[b]
-    \centering
-    \includegraphics[width=\textwidth]{figs/etapa_analogica.png}
-    \caption{Esquemático simplificado de la etapa analógica del módulo desarrollado 
-    por el GIBIO en la UTN-FRBA.}
-    \label{fig:etapa_analogica_esquematico}
-  \end{figure*}
-\subsection{Acondicionamiento analógico}
 
+\subsection{Acondicionamiento analógico}
 
 
 
@@ -195,8 +197,12 @@ la primera etapa de amplificación. Tiene una corriente de polarización de entr
 20 fA. Además, proporciona un terminal de "guard" que permite reducir las perdidas
 parásitas de la señal hacia la masa del circuito.
  
+
+
 La figura \ref{fig:etapa_analogica_esquematico} muestra el esquemático simplificado
 del módulo analógico.
+
+
 
 Un problema de diseño de este módulo, es que no tiene una frecuencia de corte
 superior lo suficientemente baja como para actuar de filtro anti-alias. Esto
@@ -214,17 +220,24 @@ Dos de las etapas tienen ganancia ajustable mediante el uso de resistencias
 variables. Estas resistencias fueron ajustadas y luego medidas, sus valores se
 encuentran en la figura \ref{fig:etapa_analogica_esquematico}, estos valores
 darán lugar a una ganancia teórica de 8.631 veces. Este valor fue el utilizado para
-realizar la calibración más adelante. Su valor exacto no es de gran importancia,
-ya que la calibración contempla la compensación por su incertidumbre 
+realizar la calibración más adelante. Su valor exacto y su tolerancia no es de
+gran importancia, ya que la calibración contempla la compensación por su
+incertidumbre, siempre y cuando este valor no varíe con el tiempo.
 
 
 \subsection{Conversión A/D}
 
-Para convertir la señal analógica entregada por el módulo analógico a una señal
-digital necesitamos de un ADC capaz de muestrear como mínimo al doble de la
-frecuencia máxima presente en una señal ECG (alrededor de 400 muestras por segundo)
-para cumplir con el criterio de Nyquist y con una resolución menor a 1 mV para
-lograr una buena calidad de la señal.
+Para convertir la señal analógica entregada por el módulo de amplificación a una señal
+digital necesitamos de un ADC capaz de muestrear con la suficiente frecuencia de muestreo
+para asegurar que no se está perdiendo información en este proceso. Como consecuencia del
+teorema de Nyquist-Shannon \cite{shannon_sampling}, sabemos que la frecuencia mínima a la
+que se tiene que muestrear es el doble de la frecuencia máxima presente en la señal 
+analógica, en nuestro caso la frecuencia de muestreo mínima es de 400 muestras por segundo.
+
+Como se describió en \ref{electrical_characteristics} la señal ECG puede tener amplitudes
+de 1 mV, que luego de la amplificación, estas serán de alrededor de 8 mV. Si se desea
+obtener una resolución vertical de 100 puntos, entonces el ADC necesitará tener una
+resolución de $\frac{8 mV}{100} = 80 \mu V$
 
 
 Se decidió utilizar el ADC ADS1115 de Texas Instruments \cite{ads1115} que adquirimos
@@ -240,8 +253,8 @@ El ADS1115 fue configurado en modo single-shot para utilizar la
 base de tiempo del microcontrolador. Estará operando a 500 muestras por
 segundo. En términos de resolución, la tensión de referencia positiva fue configurada
 para utilizar la referencia interna de 4.096 V, y 0 V como referencia negativa.
-Esta configuración permite una resolución teórica de $\dfrac{4.096 V}{2^{16}} = 
-62.5 \mu V$.
+Esta configuración permite una resolución teórica de $\frac{4.096 V}{2^{16}} = 
+62.5 \mu V$ lo cual excede nuestro requisito de una resolución vertical menor a $80 \mu V$
 
 \subsection{Interfaz PC-ADC}
 
@@ -249,10 +262,7 @@ Para configurar y comunicar los resultados del ADS1115 con una computadora, es
 necesario el uso de un microcontrolador. Decidimos utilizar una placa de desarrollo 
 de ST Microelectronics: La \textit{Nucleo F401-RE} \cite{nucleo}. Esta placa está
 basada sobre un microcontrolador STM32F401RE, este es un ARM Cortex-M4 de 32 bit
-con una frecuencia de reloj máxima de 84 MHz. Este microcontrolador está
-sobredimensionado para esta aplicación, pero aun así lo utilizamos porque el
-grupo ya tenía experiencia previa con esta placa de desarrollo en particular y lo
-pudimos obtener con facilidad mediante la universidad.
+con una frecuencia de reloj máxima de 84 MHz. 
 
 De este microcontrolador utilizamos principalmente un puerto I$^2$C para la
 comunicación con el ADS1115, un timer interno con una interrupción para poder
@@ -266,10 +276,21 @@ del ADC mediante un puerto serie.
 El código fuente y los binarios utilizados se encuentra en el repositorio del
 proyecto. \cite{repository} 
 
+La figura \ref{fig:foto_proyecto} muestra el electrocardiógrafo ensamblado. En la
+parte superior a la izquierda se encuentra la STM32 Nucleo, debajo de ella se
+encuentra el módulo ADS1115 y a la derecha se encuentra el módulo que contiene
+la etapa analógica.
+
+\begin{figure}[hb]
+    \centerline{\includegraphics[width=\linewidth]{figs/foto_proyecto.jpeg}}
+    \caption{Fotografía del proyecto en su gabinete.}
+    \label{fig:foto_proyecto}
+    \end{figure}
+
 \subsection{Software PC}\label{software-pc}
 
 Para la visualización de la señal, se desarrolló una interfaz gráfica programada
-en Python utilizando la librería PyQt5. El programa recibe los datos de las
+en Python utilizando la librería PyQt5. \cite{pyqt5} El programa recibe los datos de las
 conversiones del ADC mediante la interfaz del puerto serie establecido a través de
 USB con el microcontrolador.
 
@@ -291,13 +312,10 @@ del espectro de interés de la señal, aun así, la reducción de ruido que acom
 esta limitación beneficia la claridad de la señal.
 
 
-\begin{figure}[thb]
-    \centerline{\includegraphics[width=\linewidth]{figs/foto_proyecto.jpeg}}
-    \caption{Fotografía del proyecto en su gabinete.}
-    \label{fig:foto_proyecto}
-    \end{figure}
+
 
 \section{Calibración}
+
 
 \subsection{Necesidad}
 
@@ -305,16 +323,13 @@ El electrocardiógrafo desarrollado tiene varias fuentes de incertidumbre, las m
 relevantes son la transferencia entre la entrada y la señal digitalizada, y la base
 de tiempo utilizada para muestrear la señal. Para que las interpretaciones del
 electrocardiograma puedan ser precisas es necesario tener buena linealidad en la 
-transferencia y temporizaciones precisas. El objetivo de la calibración es obtener
-dos factores: Un factor de corrección temporal que denominaremos $\alpha_T$,
-que especifica proporcionalmente cuanto está desviada la base de tiempo del
-electrocardiógrafo, y un factor de calibración de amplitud que denominaremos
-$\alpha_A$, que especifica la diferencia relativa entre la ganancia teórica del
-sistema y la real.
+transferencia y temporizaciones precisas. El objetivo de esta calibración es
+obtener parámetros que sirvan para aplicar una corrección lineal a los valores
+medidos para minimizar estas discrepancias.
 
-Una vez que se obtienen estos valores, cualquier análisis que se realice sobre
-una señal obtenida por el electrocardiógrafo, se puede corregir multiplicando por
-el factor de corrección que corresponda al tipo de medición.
+Una vez que se obtienen estos parámetros, cualquier análisis que se realice sobre
+una señal obtenida por el electrocardiógrafo, se puede corregir aplicando una
+transformación simple de los valores medidos utilizando estos parámetros.
 
 Otra necesidad de conocer con exactitud la base de tiempo es para el uso de los
 filtros. Estos depende de conocer con precisión la frecuencia de muestreo del ADC.
@@ -337,16 +352,17 @@ muestras de 10 segundos cada una utilizando el electrocardiógrafo y fueron guar
 en archivos para luego procesar.
 
 Una vez obtenidas las señales se les aplicó los mismos filtros que el programa de
-la visualización utiliza para limpiar la señal.
+la visualización utiliza para limpiar la señal, detallado en la sección
+\ref{software-pc}.
 
 Las señales proporcionadas al generador de ondas arbitrario fueron sintetizadas 
 utilizando la librería de Python \texttt{neurokit2}. \cite{neurokit2}
-Esta misma librería se utilizó
-luego para analizar las señales captadas por el electrocardiógrafo.
+Esta misma librería se utilizó luego para analizar las señales captadas por el
+electrocardiógrafo.
 
 De las señales captadas se midieron dos parámetros para estudiar el rendimiento:
 
-Primero, la frecuencia cardiaca, este valor es un parámetro biológico clave estudiado
+Primero, la frecuencia cardiaca ($f$), este valor es un parámetro biológico clave estudiado
 en la electrocardiografía, y además proporciona un valor que tiene una correlación
 perfectamente lineal con la base de tiempo del electrocardiógrafo, una posible fuente
 de error. Fue medido utilizando la función \texttt{ecg\_process} de \texttt{neurokit2}
@@ -354,33 +370,34 @@ con  el método de detección de picos "engzeemod2012" y promediando el valor de
 cardíaco a lo largo del vector de salida.
 
 Y como segundo parámetro, se midió la diferencia entra la amplitud promedio de los
-pulsos R y la amplitud promedio de los pulsos S. Los pulsos también fueron detectados
+pulsos R y la amplitud promedio de los pulsos S, la cual denominamos $a$. Expresado
+algebraicamente: $a = V_R - V_S$.
+La posición temporal de estos pulsos también fueron detectados
 utilizando la función \texttt{ecg\_process} con el mismo método de detección de picos
 que su usó para obtener la frecuencia cardiaca. Este parámetro es útil, debido a que
 representa una buena medición de la amplitud pico a pico de la señal, ya que los
 pulsos S son los puntos más bajos de la señal y los pulsos R los más altos.
 
-La calibración se realizó para las frecuencias cardiacas de: 50, 75, 100, 200 y 250
-latidos por minuto, y amplitudes de 0.002, 0.005, 0.01, 0.02 y 0.1 V.
+La calibración se realizó para todas las combinaciones entre las frecuencias
+cardiacas de: 50, 75, 100, 200 y 250 latidos por minuto, y amplitudes de 0.002,
+0.005, 0.01, 0.02 y 0.1 V. 
 Para cada una de estas combinaciones se realizaron 10 muestras de 10 segundos cada
 una, resultando en un total de 250 muestras. La mitad de estas muestras fueron
 destinadas para la calibración, mientras que la otra  mitad se utilizó para la
 verificación de la calibración. Es importante no reutilizar las mismas muestras para
 calibrar y para verificar debido a que esto producirá una verificación de la
 calibración sesgada.
+La calibración se realiza en varias frecuencias y amplitudes
+para estudiar si existe un error relativo que sea dependiente de la medición,
+la calibración es lineal y no puede corregir desviaciones dependientes de los valores que
+se miden.
 
-Una vez que se obtuvieron las mediciones de la calibración, estos se compararon con 
-los valores teóricos para calcular ambos factores de corrección.
 
-Más específicamente, cada factor se calculó utilizando la media aritmética
-de todos los errores relativos:
 
-$$\alpha_{T} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}\nolimits
-~ \frac{f}{\hat{f}_{(a,f,n)}} $$ 
- 
+La figura \ref{fig:calibracion} muestra una fotografía tomada
+durante el proceso de calibración, en la que se puede ver la computadora, el generador
+de ondas arbitrarias y el electrocardiógrafo.
 
-$$\alpha_{A} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}\nolimits
-~ \frac{a}{\hat{a}_{(a,f,n)}} $$ 
 \begin{figure}[b]
     \centering
     \includegraphics[width=\linewidth]{figs/foto_calibracion.jpeg}
@@ -389,52 +406,78 @@ $$\alpha_{A} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}\nol
     \label{fig:calibracion}
 
 \end{figure}
+
+Una vez que se obtuvieron las mediciones de la calibración, proponemos la
+siguiente forma de definir y utilizar los parámetros de calibración para corregir
+los errores del instrumento:
+
+Definiremos dos parámetros, $\alpha_{T}$ para la calibración de temporal y
+$\alpha_{A}$ para la calibración de amplitud. los cuales representarán
+el error relativo medio de todas las mediciones de calibración tomadas
+anteriormente.
+Estos parámetros luego se podrán utilizar ajustar linealmente las mediciones que
+se tomen durante su uso.
+
+Matemáticamente, los factores de corrección se definieron de la siguiente manera: 
+
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figs/calib_error_map.png}
+    \caption{Mapa de error de medición sin la calibración aplicada.}
+    \label{fig:plot_errpr_sin_calib}
+\end{figure*}
+
+\begin{equation}
+\alpha_{T} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}\nolimits
+~ \frac{f}{\hat{f}_{(a,f,n)}}
+\label{eqn:alpha_f}
+\end{equation} 
+
+
+\begin{equation}
+\alpha_{A} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}\nolimits
+~ \frac{a}{\hat{a}_{(a,f,n)}}
+\label{eqn:alpha_a}
+\end{equation}
+
+
+
 Donde $A$ y $F$ son respectivamente los conjuntos de amplitudes y frecuencias
 cardiacas utilizadas para calibrar. $\hat{f}_{(a,f,n)}$ y $\hat{a}_{(a,f,n)}$ es el valor medido durante
 la calibración de la $n$-esima muestra para una amplitud de $a$ y
 frecuencia cardíaca de $f$. $N=125$ es la cantidad total de
 muestras medidas (5 frecuencias cardiacas, 5 amplitudes y 5 muestras por combinación).
 
-Además, para cada uno de estos factores, es relevante conocer su incertidumbre,
-para esto calculamos el desvío estándar de la media de cada uno. Las fórmulas
-utilizadas son las siguientes:
-
-$$ u^2 \left( \alpha_{T} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
-\times \{1...10 \}}\nolimits \left( \frac{f}{\hat{f}_{(a,f,n)}} - \overline{\alpha_{T}}
-\right)^2 $$ 
-
-$$ u^2 \left( \alpha_{A} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
-\times \{1...10 \}}\nolimits \left( \frac{a}{\hat{a}_{(a,f,n)}} - \overline{\alpha_{A}}
-\right)^2 $$ 
-
-En todos los casos, la incertidumbre se dará en forma expandida con un factor de
-cobertura $k = 2$, es decir, con una confianza del 95\%:
-
-$$U(\alpha) = k u(\alpha)$$
-
 Una vez que se obtienen estos factores de calibración, se pueden utilizar para ajustar
 cualquier medición realizada con el electrocardiógrafo utilizando las siguientes
 conversiones:
 
-$$ F' = \alpha_{T} F$$
+\begin{equation}
+    f' = \alpha_{T} f
+    \label{eqn:f_correct}
+\end{equation} 
 
-$$ T' = \frac{T}{\alpha_{T}} $$
+\begin{equation}
+    t' = \frac{t}{\alpha_{T}}
+    \label{eqn:t_correct}
+\end{equation} 
 
-$$ A' = \alpha_{A} A$$
+\begin{equation}
+    a' = \alpha_{A} a
+    \label{eqn:a_correct}
+\end{equation} 
+        
 
-\begin{figure*}[t]
-    \centering
-    \includegraphics[width=\textwidth]{figs/plot_error_sin_calib.png}
-    \caption{Mapa de error de medición sin la calibración aplicada.}
-    \label{fig:plot_errpr_sin_calib}
 
-\end{figure*}
 
-Donde $F$ indica algún parámetro frecuencial medido, como ser pulsaciones por minuto,
-$T$ indica un parámetro temporal medido como ser separación entre pulsos, y
-$A$ indica un parámetro de amplitud.
-$F'$, $T'$ y $A'$ indican los valores corregidos de $F$, $T$ y $A$ respectivamente.
- 
+
+Donde $f$ indica algún parámetro frecuencial medido, como ser pulsaciones por minuto,
+$t$ indica un parámetro temporal medido como ser separación entre pulsos, y
+$a$ indica un parámetro de amplitud.
+$f'$, $t'$ y $a'$ indican los valores corregidos de $f$, $t$ y $a$ respectivamente.
+
+
 Otra forma de aplicar una corrección es modificar la señal previo al análisis
 de la siguiente forma:
 
@@ -442,23 +485,77 @@ $$ v'(t) = \alpha_{A} ~ v(\alpha_T ~ t)$$
 
 Donde $v(t)$ representa la señal original y $v'(t)$ la señal corregida.
 
+Este procedimiento perimte compoensar errores de método que puedan estar presentes
+en el sistema. 
+
+
+Además, para cada uno de estos factores, es relevante conocer su incertidumbre,
+para esto calculamos el desvío estándar de la media de cada uno. Las fórmulas
+utilizadas son las siguientes:
+
+
+\begin{equation}
+u^2 \left( \alpha_{T} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
+\times \{1...10 \}}\nolimits \\\left( \frac{f}{\hat{f}_{(a,f,n)}} - \overline{\alpha_{T}}
+\right)^2
+\label{eqn:alpha_f_u}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+u^2 \left( \alpha_{A} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
+\times \{1...10 \}}\nolimits \left( \frac{a}{\hat{a}_{(a,f,n)}} - \overline{\alpha_{A}}
+\right)^2 
+\label{eqn:alpha_a_u}
+\end{split}
+\end{equation}
+
+En todos los casos, la incertidumbre se dará en forma expandida con un factor de
+cobertura $k = 2$, es decir, con una confianza del 95\%:
+
+$$U(\alpha) = k u(\alpha)$$
+
+
+
+
+
+
  
 
-\subsection{Resultados de la calibración}
+\section{Resultados}
+
+\subsection{Parámetros de calibración}
 
 La figura \ref{fig:plot_errpr_sin_calib} muestra para cada frecuencia y amplitud,
-el error relativo medio entre la medición de cada parámetro, y el esperado.
+el error relativo medio entre la medición de cada parámetro, y el esperado, sin aplicar
+ninguna calibración.
+Expresado algebraicamente, estos mapas muestran las siguientes funciones:
 
+$$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+\dfrac{f}{\hat{f}(f,a,n)}$$
  
+
+$$ \delta_{A} \left(F, A\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+\dfrac{a}{\hat{a}(f,a,n)}$$
+
+
 Analizando cualitativamente el gráfico de error de frecuencia cardíaca, vemos que este
 es muy consistente a lo largo de las frecuencias y amplitudes probadas,
 todos los valores de error están dentro de un rango del 1.6\% al 1.7\%.
 
 De lo contrario, vemos que el error de amplitud no es consistente y varía
 dependiendo de la frecuencia cardíaca.
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figs/test_error_map.png}
+    \caption{Mapa de error de medición con la calibración aplicada.}
+    \label{fig:plot_errpr_con_calib}
 
-Utilizando las ecuaciones planteadas en la subsección anterior, procedemos a calcular
-los factores de corrección.
+\end{figure*}
+Utilizando las ecuaciones \ref{eqn:alpha_f}, \ref{eqn:alpha_a}, \ref{eqn:alpha_f_u}
+y \ref{eqn:alpha_a_u} se obtienen los valores de los factores de corrección y sus
+incertidumbres:
 
 \boldmath
 $$ \alpha_{T} = 1.01692 \pm 0.00088 $$
@@ -470,56 +567,55 @@ $$ \alpha_{A} = 0.969 \pm 0.048 $$
 
 \subsection{Rendimiento de la calibración}
 
+
 Una vez obtenido los factores de corrección, estos valores se pueden utilizar
 para refinar el desempeño del electrocardiógrafo calibrado. Procedemos a realizar
 el mismo análisis que se realizó para la calibración con el paso adicional de
 aplicar los factores de corrección previo al análisis de las señales.
+
+Al igual que para la calibración, graficamos el error relativo en función de 
+la frecuencia cardíaca y amplitud y corregimos por los factores de calibración
+obtenidos. Expresado algebraicamente:
+
+$$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+\dfrac{f}{\alpha_T ~ \hat{f}(f,a,n)}$$
+ 
+
+$$ \delta_{A} \left(F, A\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+\dfrac{a}{\alpha_A ~ \hat{a}(f,a,n)}$$
+
+Debe recordarse que en este caso los valores $\hat{f}(f,a,n)$ y $\hat{a}(f,a,n)$
+corresponden a otro conjunto de mediciones a los que se utilizaron para la calibración.
+
 
 Esto resulta en el mapa de error visualizado en la figura
 \ref{fig:plot_errpr_con_calib}.
 
 Los errores de la frecuencia cardíaca se encuentran dentro de un rango del -0.04\% al
 0.02\%, mientras que los errores de amplitud tienen más dispersión y, como es de
-esperar, siguen manteniendo la correlación entre error y frecuencia cardíaca que 
-se observó previo a la calibración. Los valores de este parámetro existen en el 
-rango de -3.6\% al 2.9\%.
+esperar debido a que la calibración es lineal, siguen manteniendo la correlación entre
+error y frecuencia cardíaca que se observó previo a la calibración. Los valores de este
+parámetro existen en el rango de -3.6\% al 2.9\%.
 
 
 
-\begin{figure*}[t]
-    \centering
-    \includegraphics[width=\textwidth]{figs/plot_error_con_calib.png}
-    \caption{Mapa de error de medición con la calibración aplicada.}
-    \label{fig:plot_errpr_con_calib}
 
-\end{figure*}
+
+
+
+
 
 \section{Medición de una señal ECG real}
 
 
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.5\linewidth]{figs/ubiacion_electrodos.png}
     \caption{Diagrama de la colocación recomendada de los electrodos.}
     \label{fig:ubicacion_electrodos}
 
 \end{figure}
-Una vez obtenidos los factores de corrección, estos fueron cargados al programa
-que se describió en la sección \ref{software-pc}.
-
-La ubicación de los electrodos es una parte crítica de la electrocardiografía,
-basándonos en la literatura y realizando comparaciones cualitativas de la calidad
-de la señal obtenida, determinamos que la mejor colocación de los electrodos para
-este caso es la ilustrada en la figura \ref{fig:ubicacion_electrodos}
-
-Una vez ubicados los electrodos, y conectados al electrocardiógrafo se puede utilizar
-el programa para visualizar la señal obtenida.
-
-En la figura \ref{fig:ecg_real} se muestra una captura de pantalla del graficador
-mostrando la señal ECG captada de uno de los integrantes del proyecto.
-
-
-\begin{figure}[t]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figs/graficador_ecg_etiquetado.png}
     \caption{Captura de pantalla tomada por la medición del electrocardiógrafo sobre 
@@ -527,6 +623,23 @@ mostrando la señal ECG captada de uno de los integrantes del proyecto.
     \label{fig:ecg_real}
 
 \end{figure}
+
+
+Una vez obtenidos los factores de corrección, estos fueron cargados al programa
+que se describió en la sección \ref{software-pc}.
+
+Para esta prueba, los electrodos fueron colocados como se muestra en la figura
+\ref{fig:ubicacion_electrodos}
+
+Una vez colocados los electrodos, y conectados al electrocardiógrafo se puede utilizar
+el programa de visualización desarrollado para graficar la señal leída en tiempo
+real.
+
+En la figura \ref{fig:ecg_real} se muestra una captura de pantalla del graficador
+mostrando la señal ECG captada de uno de los integrantes del proyecto.
+
+
+
 
 
 
@@ -543,15 +656,16 @@ podría dar más información al respecto. Luego de la calibración, el error de
 frecuencia cardiaca permanece debajo del 0.04\%, una cifra muy buena indicando
 consistencia entre diferentes condiciones de medición.
 
-En términos de la amplitud, la correlación negativa del valor medido con la
-frecuencia cardiaca puede ser un indicio de que la señal alcanza su valor pico
-entre dos muestras del ADC. El comportamiento esperado de esta situación es que
-disminuya con un incremento de frecuencia, que es precisamente lo que se observa
-que sucede.
-Para estudiar esto es necesario analizar la forma de onda con más precisión y 
-remplazar el ADC por uno que soporte frecuencias de muestreo más altas. La calibración
-ayudó a que el error de amplitud se encuentre más uniformemente disperso entre
-las distintas frecuencias cardíacas.
+% En términos de la amplitud, la correlación negativa del valor medido con la
+% frecuencia cardiaca puede ser un indicio de que la señal alcanza su valor pico
+% entre dos muestras del ADC. El comportamiento esperado de esta situación es que
+% disminuya con un incremento de frecuencia, que es precisamente lo que se observa
+% que sucede.
+
+% Para estudiar esto es necesario analizar la forma de onda con más precisión y 
+% remplazar el ADC por uno que soporte frecuencias de muestreo más altas. La calibración
+% ayudó a que el error de amplitud se encuentre más uniformemente disperso entre
+% las distintas frecuencias cardíacas.
 
 Otro valor de interés para observar es la incertidumbre de los factores de corrección.
 Como es de esperar, la incertidumbre relativa de $\alpha_T$ es extremadamente bajo,

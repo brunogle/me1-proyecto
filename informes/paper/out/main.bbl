@@ -50,6 +50,9 @@ Z.~B. Murugappan~M, Murugappan~S, ``Frequency band analysis of electrocardiogram
 A.~Devices, ``Data sheet ada4530-1.'' [Online]. Available: \url{https://www.analog.com/media/en/technical-documentation/data-sheets/ADA4530-1.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{shannon_sampling}
+C.~Shannon, ``Communication in the presence of noise,'' \emph{Proceedings of the IRE}, vol.~37, no.~1, pp. 10--21, 1949.
+
 \bibitem{ads1115}
 \BIBentryALTinterwordspacing
 T.~Instruments, ``Data sheet ads111x.'' [Online]. Available: \url{https://www.ti.com/lit/ds/symlink/ads1114.pdf}
@@ -63,6 +66,11 @@ T.~Instruments, ``Data sheet ads111x.'' [Online]. Available: \url{https://www.ti
 \bibitem{repository}
 \BIBentryALTinterwordspacing
 ``Trabajo práctico - medidas electrónicas 1.'' [Online]. Available: \url{https://github.com/brunogle/me1-proyecto}
+\BIBentrySTDinterwordspacing
+
+\bibitem{pyqt5}
+\BIBentryALTinterwordspacing
+``Pyqt5.'' [Online]. Available: \url{https://pypi.org/project/PyQt5/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{neurokit2}

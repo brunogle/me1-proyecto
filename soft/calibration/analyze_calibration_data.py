@@ -183,14 +183,14 @@ def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, ampl
             ax[1].text(j, i, round(amplitude_error_map[i, j], 2), ha="center", va="center", color="darkgray")
 
     # Axis titles
-    ax[0].set_xlabel('Frecuencia Cardíaca (BPM)')
-    ax[0].set_ylabel('Amplitud (Vpp)')
-    ax[1].set_xlabel('Frecuencia Cardíaca (BPM)')
-    ax[1].set_ylabel('Amplitud (Vpp)')
+    ax[0].set_xlabel('Frecuencia Cardíaca ($f$) [BPM]')
+    ax[0].set_ylabel('Amplitud ($a$) [V]')
+    ax[1].set_xlabel('Frecuencia Cardíaca ($f$) (BPM)')
+    ax[1].set_ylabel('Amplitud ($a$) [V]')
 
     # Titles
-    ax[0].set_title("Error Frecuencia Cardíaca")
-    ax[1].set_title("Error Amplitud R-S")
+    ax[0].set_title("Error Frecuencia Cardíaca ($\delta_f$)")
+    ax[1].set_title("Error Amplitud ($\delta_a$)")
 
 
 
@@ -221,6 +221,45 @@ def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, ampl
 
     return fig
 
+"""
+def plot_2correlations(x_values, y_values1, y_values2, x_label, y_label, y1_legend, y2_legend, title):
+    fig, ax = plt.subplots()
+    fig.suptitle(title)
+
+    x_values_str = list(np.array(x_values).astype('str'))
+
+    ax.plot(x_values_str, y_values1, label=y1_legend, marker='.', markersize=4, color='b')
+    ax.tick_params(axis='y', labelcolor='b')
+    ax2 = ax.twinx() 
+
+    ax2.plot(x_values_str, y_values2, label=y2_legend, marker='.', markersize=4, color='r')
+    ax.set_ylabel(y1_legend, color='b')
+    ax2.set_ylabel(y2_legend, color='r')
+    ax2.tick_params(axis='y', labelcolor='r')
+    ax.grid()
+    fig.tight_layout()
+    #ax.set_yscale('symlog')
+
+    return fig
+
+"""
+
+def plot_2correlations(x_values, y_values1, y_values2, x_label, y_label, y1_legend, y2_legend, title):
+    fig, ax = plt.subplots()
+    fig.suptitle(title)
+
+    x_values_str = list(np.array(x_values).astype('str'))
+
+    ax.plot(x_values_str, y_values1, label=y1_legend, marker='.', markersize=4, color='b')
+
+    ax.plot(x_values_str, y_values2, label=y2_legend, marker='.', markersize=4, color='r')
+    ax.set_ylabel(y_label)
+    ax.legend()
+    ax.grid()
+    fig.tight_layout()
+    #ax.set_yscale('symlog')
+
+    return fig
 def calculate_error_maps(labeled_measurements):
 
 
@@ -333,10 +372,46 @@ calibrated_heart_rate_error_map, calibrated_amplitude_error_map = calculate_erro
 
 test_error_map_fig = plot_error_maps(calibrated_heart_rate_error_map, calibrated_amplitude_error_map, heart_rates, amplitudes, title="")
 
-test_error_map_fig.savefig(output_folder + "/calib_error_map.png")
+
+# Grafico correlaciones
+
+heart_rate_err_vs_heart_rate = [np.mean(calibrated_heart_rate_error_map[:,x]) for x in range(len(heart_rates))]
+amplitude_err_vs_heart_rate = [np.mean(calibrated_amplitude_error_map[:,x]) for x in range(len(heart_rates))]
+
+ 
+heart_rate_corr_fig = plot_2correlations(heart_rates,
+                            heart_rate_err_vs_heart_rate,
+                            amplitude_err_vs_heart_rate,
+                            "Frecuencia Cardíaca ($f$)",
+                            "Error Relativo Promedio",
+                            "Error Frecuencia Cardíaca ($\delta_f$)",
+                            "Error Amplitud ($\delta_a$)",
+                            "Relación errores vs Frecuencia Cardíaca")
+
+
+heart_rate_err_vs_amplitude = [np.mean(calibrated_heart_rate_error_map[x,:]) for x in range(len(amplitudes))]
+amplitude_err_vs_amplitude = [np.mean(calibrated_amplitude_error_map[x,:]) for x in range(len(amplitudes))]
+
+ 
+
+
+amplitude_corr_fig = plot_2correlations(amplitudes,
+                            heart_rate_err_vs_amplitude,
+                            amplitude_err_vs_amplitude,
+                            "Amplitud ($a$)",
+                            "Error Relativo Promedio",
+                            "Error Frecuencia Cardíaca ($\delta_f$)",
+                            "Error Amplitud ($\delta_a$)",
+                            "Relación error vs Amplitud")
+
+
+heart_rate_corr_fig.savefig(output_folder + "/heart_rate_corr.png")
+amplitude_corr_fig.savefig(output_folder + "/amplitude_corr.png")
+
+calib_error_map_fig.savefig(output_folder + "/calib_error_map.png")
 test_error_map_fig.savefig(output_folder + "/test_error_map.png")
 
 with open(output_folder + "/calib_factors.txt", "w") as out_file:
     out_file.write(calib_factor_str)
 
-input()
+#input()
