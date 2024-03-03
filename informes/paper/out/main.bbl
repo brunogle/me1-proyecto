@@ -73,6 +73,11 @@ T.~Instruments, ``Data sheet ads111x.'' [Online]. Available: \url{https://www.ti
 ``Pyqt5.'' [Online]. Available: \url{https://pypi.org/project/PyQt5/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{ecg_noise}
+\BIBentryALTinterwordspacing
+A.~Velayudhan and S.~Peter, ``Noise analysis and different denoising techniques of ecg signal - a survey,'' 2016. [Online]. Available: \url{https://api.semanticscholar.org/CorpusID:36175816}
+\BIBentrySTDinterwordspacing
+
 \bibitem{neurokit2}
 \BIBentryALTinterwordspacing
 ``Neurokit2: The python toolbox for neurophysiological signal processing.'' [Online]. Available: \url{https://github.com/neuropsychology/NeuroKit}

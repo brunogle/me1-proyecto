@@ -133,7 +133,10 @@ class MainWindow(QMainWindow):
             if self.serial_device.isOpen():
 
                 while self.serial_device.in_waiting > 10:
-                    adc_reading = self.amp_calibration*4096*float(self.serial_device.readline().decode("utf-8").replace('\x00', '').replace('\n', '').replace('\r', ''))/0x7FFF/self.amp_gain
+                    
+                    clean_adc_str = self.serial_device.readline().decode("utf-8").replace('\x00', '').replace('\n', '').replace('\r', '')
+
+                    adc_reading = self.amp_calibration*4096*float(clean_adc_str)/0x7FFF/self.amp_gain
 
                     
                     filtered_adc_reading1, self.filt_z = signal.sosfilt(self.filt_coef, [adc_reading], zi=self.filt_z)

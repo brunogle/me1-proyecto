@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex out/main"] 1709409447 "out/main.aux" "out/main.bbl" "out/main" 1709409676 0
-  "./references.bib" 1709402584 3467 72baf6e88c33a5e5799f0ec5f2c54423 ""
+["bibtex out/main"] 1709429608 "out/main.aux" "out/main.bbl" "out/main" 1709491679 0
+  "./references.bib" 1709427522 3702 db4f57ee93945db0da28f3123775d372 ""
   "/usr/share/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1704400182 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "out/main.aux" 1709409675 5077 2e9ca7670d2cc7a77dd8a12dc460d8bd "pdflatex"
+  "out/main.aux" 1709491679 5443 323256f04abe468678b99e57928b2d65 "pdflatex"
   (generated)
   "out/main.bbl"
   "out/main.blg"
   (rewritten before read)
-["pdflatex"] 1709409675 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "out/main.pdf" "main" 1709409676 0
-  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1709409675 30195 fb002e26e5ddbdb9028f8fdd0826cef6 ""
+["pdflatex"] 1709491679 "/home/bruno/git/me1-proyecto/informes/paper/main.tex" "out/main.pdf" "main" 1709491679 0
+  "/home/bruno/git/me1-proyecto/informes/paper/main.tex" 1709491678 30062 2641fdd9f63b65b0af99702e79a7bfc8 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1704400182 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1704400182 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1704400182 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -113,9 +113,9 @@
   "figs/graficador_ecg_etiquetado.png" 1707714767 42464 3a81f9f65fac908d75aef2b314cf117c ""
   "figs/test_error_map.png" 1709099939 66218 16ca2a1c315df2bb4a77b0837846fe3d ""
   "figs/ubiacion_electrodos.png" 1707705472 37236 f6a417e65ab83ee7d6de3423fd977513 ""
-  "main.tex" 1709409675 30195 fb002e26e5ddbdb9028f8fdd0826cef6 ""
-  "out/main.aux" 1709409675 5077 2e9ca7670d2cc7a77dd8a12dc460d8bd "pdflatex"
-  "out/main.bbl" 1709409447 3735 f19dff1a1cef982dd5885e4d12ad1d01 "bibtex out/main"
+  "main.tex" 1709491678 30062 2641fdd9f63b65b0af99702e79a7bfc8 ""
+  "out/main.aux" 1709491679 5443 323256f04abe468678b99e57928b2d65 "pdflatex"
+  "out/main.bbl" 1709429608 4005 06e013b4ab58cf5e38fb7b02a7e173e0 "bibtex out/main"
   (generated)
   "out/main.aux"
   "out/main.log"
