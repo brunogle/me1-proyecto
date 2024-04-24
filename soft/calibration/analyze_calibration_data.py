@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 import warnings
 from scipy import signal
-from pathlib import Path
+from pathlib import Path 
 
 
 # Ubicación de los datos producidos por acquire_calibration_data.py
@@ -47,11 +47,11 @@ def filter_signal(waveform):
 
     zi1 = np.mean(waveform[:])*signal.sosfilt_zi(bandpass_filt_coef)
 
-    waveform_filt1, zo = signal.sosfilt(bandpass_filt_coef, waveform, zi=zi1)
+    waveform_filt1, zo = signal.sosfiltfilt(bandpass_filt_coef, waveform, zi=zi1)
 
     zi2 = np.mean(waveform_filt1[:])*signal.sosfilt_zi(notch_filt_coef)
 
-    waveform_filt2, zo = signal.sosfilt(notch_filt_coef, waveform_filt1, zi=zi2)
+    waveform_filt2, zo = signal.sosfiltfilt(notch_filt_coef, waveform_filt1, zi=zi2)
 
     return waveform_filt2
 
@@ -159,11 +159,14 @@ def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, ampl
     peak_value1 = np.max(np.abs(heart_rate_error_map))
     peak_value2 = np.max(np.abs(amplitude_error_map))
 
+    peak_value = np.max([peak_value1, peak_value2])
+
     cmap_norm1 = mpl.colors.Normalize(vmin=-peak_value1, vmax=peak_value1)
     cmap_norm2 = mpl.colors.Normalize(vmin=-peak_value2, vmax=peak_value2)
 
-    im1 = ax[0].imshow(heart_rate_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm1, cmap='RdBu_r').get_cmap(), vmin=-peak_value1, vmax=peak_value1)
-    im2 = ax[1].imshow(amplitude_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm2, cmap='RdBu_r').get_cmap(), vmin=-peak_value2, vmax=peak_value2)
+
+    im1 = ax[0].imshow(heart_rate_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm1, cmap='RdBu_r').get_cmap(), vmin=-peak_value, vmax=peak_value)
+    im2 = ax[1].imshow(amplitude_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm2, cmap='RdBu_r').get_cmap(), vmin=-peak_value, vmax=peak_value)
 
 
     # Tick labels

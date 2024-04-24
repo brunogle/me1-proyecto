@@ -60,8 +60,8 @@ all: main-build
 main-build: ADS1115_Capture.elf secondary-outputs
 
 # Tool invocations
-ADS1115_Capture.elf ADS1115_Capture.map: $(OBJS) $(USER_OBJS) /home/bruno/Documents/git/me1-proyecto/soft/ADS1115_Capture/STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ADS1115_Capture.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/bruno/Documents/git/me1-proyecto/soft/ADS1115_Capture/STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADS1115_Capture.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ADS1115_Capture.elf ADS1115_Capture.map: $(OBJS) $(USER_OBJS) /home/bruno/git/me1-proyecto/soft/ADS1115_Capture/STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ADS1115_Capture.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/bruno/git/me1-proyecto/soft/ADS1115_Capture/STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADS1115_Capture.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

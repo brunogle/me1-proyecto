@@ -424,14 +424,14 @@ manera:
 
 
 \begin{equation}
-\alpha_{T} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}
+\alpha_{T} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...5 \}}
 \nolimits ~ \frac{f}{\hat{f}_{(a,f,n)}}
 \label{eqn:alpha_f}
 \end{equation} 
 
 
 \begin{equation}
-\alpha_{A} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...10 \}}
+\alpha_{A} = \dfrac{1}{N} \sum_{(a,f,n) \in A \times F \times \{1...5 \}}
 \nolimits ~ \frac{a}{\hat{a}_{(a,f,n)}}
 \label{eqn:alpha_a}
 \end{equation}
@@ -498,7 +498,7 @@ utilizadas son las siguientes:
 
 \begin{equation}
 u^2 \left( \alpha_{T} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
-\times \{1...10 \}}\nolimits \\\left( \frac{f}{\hat{f}_{(a,f,n)}} - 
+\times \{1...5 \}}\nolimits \\\left( \frac{f}{\hat{f}_{(a,f,n)}} - 
 \overline{\alpha_{T}} \right)^2
 \label{eqn:alpha_f_u}
 \end{equation}
@@ -507,7 +507,7 @@ u^2 \left( \alpha_{T} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
 \begin{equation}
 \begin{split}
 u^2 \left( \alpha_{A} \right) = \dfrac{1}{N - 1} \sum_{(a,f,n) \in A \times F
-\times \{1...10 \}}\nolimits \left( \frac{a}{\hat{a}_{(a,f,n)}} -
+\times \{1...5 \}}\nolimits \left( \frac{a}{\hat{a}_{(a,f,n)}} -
 \overline{\alpha_{A}} \right)^2 
 \label{eqn:alpha_a_u}
 \end{split}
@@ -529,11 +529,11 @@ amplitud, el error relativo medio entre la medición de cada parámetro, y el
 esperado, sin aplicar ninguna calibración.
 Expresado algebraicamente, estos mapas muestran las siguientes funciones:
 
-$$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+$$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
 \left( \dfrac{\hat{f}(f,a,n)}{f} - 1\right)$$
  
 
-$$ \delta_{a} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+$$ \delta_{a} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
 \left( \dfrac{\hat{a}(f,a,n)}{a} - 1\right)$$
 
 
@@ -574,11 +574,11 @@ Al igual que para la calibración, graficamos el error relativo en función de
 la frecuencia cardíaca y amplitud, pero para estas mediciones corregimos por
 utilizando los factores de calibración obtenidos. Expresado algebraicamente:
 
-$$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+$$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
 \left( \dfrac{\alpha_T ~ \hat{f}(f,a,n)}{f} - 1\right)$$
  
 
-$$ \delta_{a} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{10} \sum_{n=1}^{10}
+$$ \delta_{a} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
 \left( \dfrac{\alpha_A ~ \hat{a}(f,a,n)}{a} - 1\right)$$
 
 Debe recordarse que en este caso los valores $\hat{f}(f,a,n)$ y $\hat{a}(f,a,n)$
