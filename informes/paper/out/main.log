@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.4.17)  24 APR 2024 17:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.4.17)  6 MAY 2024 10:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -324,32 +324,31 @@ File: figs/foto_calibracion.jpeg Graphic file (type jpg)
 Package pdftex.def Info: figs/foto_calibracion.jpeg  used on input line 405.
 (pdftex.def)             Requested size: 252.0pt x 189.18779pt.
  [4 <./figs/foto_calibracion.jpeg>]
-<figs/calib_error_map.png, id=33, 867.24pt x 383.031pt>
+<figs/calib_error_map.png, id=33, 867.24pt x 794.97pt>
 File: figs/calib_error_map.png Graphic file (type png)
 <use figs/calib_error_map.png>
 Package pdftex.def Info: figs/calib_error_map.png  used on input line 454.
-(pdftex.def)             Requested size: 516.0pt x 227.9092pt.
- [5 <./figs/calib_error_map.png>]
-<figs/test_error_map.png, id=39, 867.24pt x 383.031pt>
+(pdftex.def)             Requested size: 516.0pt x 473.01909pt.
+<figs/test_error_map.png, id=34, 867.24pt x 794.97pt>
 File: figs/test_error_map.png Graphic file (type png)
 <use figs/test_error_map.png>
-Package pdftex.def Info: figs/test_error_map.png  used on input line 561.
-(pdftex.def)             Requested size: 516.0pt x 227.9092pt.
-<figs/graficador_ecg_etiquetado.png, id=40, 493.845pt x 294.34969pt>
+Package pdftex.def Info: figs/test_error_map.png  used on input line 462.
+(pdftex.def)             Requested size: 516.0pt x 473.01909pt.
+ [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./figs/calib_error_map.png>] [7 <./figs/test_error_map.png>]
+<figs/graficador_ecg_etiquetado.png, id=56, 493.845pt x 294.34969pt>
 File: figs/graficador_ecg_etiquetado.png Graphic file (type png)
 <use figs/graficador_ecg_etiquetado.png>
-Package pdftex.def Info: figs/graficador_ecg_etiquetado.png  used on input line 604.
+Package pdftex.def Info: figs/graficador_ecg_etiquetado.png  used on input line 644.
 (pdftex.def)             Requested size: 252.0pt x 150.19719pt.
- [6 <./figs/test_error_map.png>]
-<figs/ubiacion_electrodos.png, id=49, 271.0125pt x 297.36093pt>
+<figs/ubiacion_electrodos.png, id=57, 271.0125pt x 297.36093pt>
 File: figs/ubiacion_electrodos.png Graphic file (type png)
 <use figs/ubiacion_electrodos.png>
-Package pdftex.def Info: figs/ubiacion_electrodos.png  used on input line 661.
+Package pdftex.def Info: figs/ubiacion_electrodos.png  used on input line 715.
 (pdftex.def)             Requested size: 126.0pt x 138.2487pt.
- (out/main.bbl
-Underfull \vbox (badness 3930) has occurred while \output is active []
-
-
+ [8 <./figs/graficador_ecg_etiquetado.png (PNG copy)> <./figs/ubiacion_electrodos.png (PNG copy)>] (out/main.bbl
 Underfull \hbox (badness 3396) in paragraph at lines 40--42
 []\OT1/ptm/m/n/8 Q. U. D. of Emer-gency Medicine, ``Anal-y-
  []
@@ -366,25 +365,27 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7 <./figs/graficador_ecg_etiquetado.png (PNG copy)> <./figs/ubiacion_electrodos.png (PNG copy)>] (out/main.aux)
+[9
+
+] (out/main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4510 strings out of 476014
- 71433 string characters out of 5792005
- 1944187 words of memory out of 5000000
- 26558 multiletter control sequences out of 15000+600000
- 599982 words of font info for 122 fonts, out of 8000000 for 9000
+ 4532 strings out of 476014
+ 71716 string characters out of 5792005
+ 1951187 words of memory out of 5000000
+ 26575 multiletter control sequences out of 15000+600000
+ 603715 words of font info for 137 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  57i,18n,65p,417b,334s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (7 pages, 1139214 bytes).
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (9 pages, 1278796 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 71 compressed objects within 1 object stream
+ 152 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

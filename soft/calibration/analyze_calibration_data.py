@@ -146,12 +146,12 @@ def analyze_labeled_data(labeled_data, sample_rate, time_correcction=1, amp_corr
 
     return labeled_measurements
 
-def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, amplitudes, title=""):
+def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rate_error_map_sd, amplitude_error_map_sd, heart_rates, amplitudes, title=""):
 
     # Subplots
 
 
-    fig, ax = plt.subplots(1,2, figsize=(12, 5.3))
+    fig, ax = plt.subplots(2, 2, figsize=(12, 11))
 
     fig.suptitle(title, fontsize=20)
 
@@ -161,39 +161,63 @@ def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, ampl
 
     peak_value = np.max([peak_value1, peak_value2])
 
+    peak_value1_sd = np.max(np.abs(heart_rate_error_map_sd))
+    peak_value2_sd = np.max(np.abs(amplitude_error_map_sd))
+
+    peak_value_sd = np.max([peak_value1_sd, peak_value2_sd])
+
+
     cmap_norm1 = mpl.colors.Normalize(vmin=-peak_value1, vmax=peak_value1)
     cmap_norm2 = mpl.colors.Normalize(vmin=-peak_value2, vmax=peak_value2)
+    cmap_norm1_sd = mpl.colors.Normalize(vmin=0, vmax=peak_value1_sd)
+    cmap_norm2_sd = mpl.colors.Normalize(vmin=0, vmax=peak_value2_sd)
 
 
-    im1 = ax[0].imshow(heart_rate_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm1, cmap='RdBu_r').get_cmap(), vmin=-peak_value, vmax=peak_value)
-    im2 = ax[1].imshow(amplitude_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm2, cmap='RdBu_r').get_cmap(), vmin=-peak_value, vmax=peak_value)
+    im1 = ax[0][0].imshow(heart_rate_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm1, cmap='RdBu_r').get_cmap(), vmin=-peak_value, vmax=peak_value)
+    im2 = ax[0][1].imshow(amplitude_error_map, cmap=mpl.cm.ScalarMappable(norm=cmap_norm2, cmap='RdBu_r').get_cmap(), vmin=-peak_value, vmax=peak_value)
+    im1_sd = ax[1][0].imshow(heart_rate_error_map_sd, cmap=mpl.cm.ScalarMappable(norm=cmap_norm1_sd, cmap='Reds').get_cmap(), vmin=0, vmax=peak_value_sd)
+    im2_sd = ax[1][1].imshow(amplitude_error_map_sd, cmap=mpl.cm.ScalarMappable(norm=cmap_norm2_sd, cmap='Reds').get_cmap(), vmin=0, vmax=peak_value_sd)
+
 
 
     # Tick labels
-    ax[0].set_xticks(np.arange(len(heart_rates)), labels=heart_rates)
-    ax[0].set_yticks(np.arange(len(amplitudes)), labels=amplitudes)
-    ax[1].set_xticks(np.arange(len(heart_rates)), labels=heart_rates)
-    ax[1].set_yticks(np.arange(len(amplitudes)), labels=amplitudes)
+    ax[0][0].set_xticks(np.arange(len(heart_rates)), labels=heart_rates)
+    ax[0][0].set_yticks(np.arange(len(amplitudes)), labels=amplitudes)
+    ax[0][1].set_xticks(np.arange(len(heart_rates)), labels=heart_rates)
+    ax[0][1].set_yticks(np.arange(len(amplitudes)), labels=amplitudes)
+    ax[1][0].set_xticks(np.arange(len(heart_rates)), labels=heart_rates)
+    ax[1][0].set_yticks(np.arange(len(amplitudes)), labels=amplitudes)
+    ax[1][1].set_xticks(np.arange(len(heart_rates)), labels=heart_rates)
+    ax[1][1].set_yticks(np.arange(len(amplitudes)), labels=amplitudes)
 
-    plt.setp(ax[0].get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
-    plt.setp(ax[1].get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+    plt.setp(ax[0][0].get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+    plt.setp(ax[0][1].get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+    plt.setp(ax[1][0].get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+    plt.setp(ax[1][1].get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
 
     # Center text
 
     for i in range(len(heart_rates)):
         for j in range(len(amplitudes)):
-            ax[0].text(j, i, round(heart_rate_error_map[i, j], 2), ha="center", va="center", color="darkgray")
-            ax[1].text(j, i, round(amplitude_error_map[i, j], 2), ha="center", va="center", color="darkgray")
+            ax[0][0].text(j, i, round(heart_rate_error_map[i, j], 2), ha="center", va="center", color="dimgray")
+            ax[0][1].text(j, i, round(amplitude_error_map[i, j], 2), ha="center", va="center", color="dimgray")
+            ax[1][0].text(j, i, round(heart_rate_error_map_sd[i, j], 2), ha="center", va="center", color="dimgray")
+            ax[1][1].text(j, i, round(amplitude_error_map_sd[i, j], 2), ha="center", va="center", color="dimgray")
 
     # Axis titles
-    ax[0].set_xlabel('Frecuencia Cardíaca ($f$) [BPM]')
-    ax[0].set_ylabel('Amplitud ($a$) [V]')
-    ax[1].set_xlabel('Frecuencia Cardíaca ($f$) (BPM)')
-    ax[1].set_ylabel('Amplitud ($a$) [V]')
-
+    ax[0][0].set_xlabel('Frecuencia Cardíaca ($f$) [BPM]')
+    ax[0][0].set_ylabel('Amplitud ($a$) [V]')
+    ax[0][1].set_xlabel('Frecuencia Cardíaca ($f$) [BPM]')
+    ax[0][1].set_ylabel('Amplitud ($a$) [V]')
+    ax[1][0].set_xlabel('Frecuencia Cardíaca ($f$) [BPM]')
+    ax[1][0].set_ylabel('Amplitud ($a$) [V]')
+    ax[1][1].set_xlabel('Frecuencia Cardíaca ($f$) [BPM]')
+    ax[1][1].set_ylabel('Amplitud ($a$) [V]')
     # Titles
-    ax[0].set_title("Error Frecuencia Cardíaca ($\delta_f$)")
-    ax[1].set_title("Error Amplitud ($\delta_a$)")
+    ax[0][0].set_title("Error Frecuencia Cardíaca ($\\delta_f$)", fontsize=15)
+    ax[0][1].set_title("Error Amplitud ($\\delta_a$)", fontsize=15)
+    ax[1][0].set_title("Desvio Estandar del Error Frecuencia Cardíaca ($\\sigma_{\\delta f}$)", fontsize=15)
+    ax[1][1].set_title("Desvio Estandar del Error Amplitud ($\\sigma_{\\delta a}$)", fontsize=15)
 
 
 
@@ -208,15 +232,26 @@ def plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, ampl
         "location": "right"
     }
 
-    divider1 = make_axes_locatable(ax[0])
+    divider1 = make_axes_locatable(ax[0][0])
     cax1 = divider1.append_axes("right", size="5%", pad=0.1)
     cbar1 = fig.colorbar(im1, cax=cax1, label="Error (%)", **cbar_kwargs)
     #cbar1.ax.set_ylabel("Error (%)", rotation=-90, va="bottom")
 
-    divider2 = make_axes_locatable(ax[1])
+    divider2 = make_axes_locatable(ax[0][1])
     cax2 = divider2.append_axes("right", size="5%", pad=0.1)
     cbar2 = fig.colorbar(im2, cax=cax2, label="Error (%)", **cbar_kwargs)
     #cbar2.ax.set_ylabel("Error (%)", rotation=-90, va="bottom")
+
+    divider1 = make_axes_locatable(ax[1][0])
+    cax1 = divider1.append_axes("right", size="5%", pad=0.1)
+    cbar1 = fig.colorbar(im1_sd, cax=cax1, label="Desvio Estandar", **cbar_kwargs)
+    #cbar1.ax.set_ylabel("Error (%)", rotation=-90, va="bottom")
+
+    divider2 = make_axes_locatable(ax[1][1])
+    cax2 = divider2.append_axes("right", size="5%", pad=0.1)
+    cbar2 = fig.colorbar(im2_sd, cax=cax2, label="Desvio Estandar", **cbar_kwargs)
+    #cbar2.ax.set_ylabel("Error (%)", rotation=-90, va="bottom")
+
 
 
     fig.tight_layout()
@@ -272,19 +307,26 @@ def calculate_error_maps(labeled_measurements):
     heart_rate_error_map = np.ndarray((len(heart_rates), len(amplitudes)))
     amplitude_error_map = np.ndarray((len(heart_rates), len(amplitudes)))
 
+    heart_rate_error_map_sd = np.ndarray((len(heart_rates), len(amplitudes)))
+    amplitude_error_map_sd = np.ndarray((len(heart_rates), len(amplitudes)))
+
+
     for hr, hr_i in zip(heart_rates, range(len(heart_rates))):
         for amp, amp_i in zip(amplitudes, range(len(amplitudes))):
             hr_meas_list = [measurement['heart_rate_meas'] for measurement in labeled_measurements[(hr,amp)]]
             amp_meas_list = [measurement['amplitude_meas'] for measurement  in labeled_measurements[(hr,amp)]]
 
 
-            hr_meas = np.mean(hr_meas_list)
-            amp_meas = np.mean(amp_meas_list)
+            hr_error_list = [100*hr_meas/hr - 100 for hr_meas in hr_meas_list]
+            amp_error_list = [100*amp_meas/amp - 100 for amp_meas in amp_meas_list]
 
-            heart_rate_error_map[amp_i][hr_i] = 100*hr_meas/hr - 100
-            amplitude_error_map[amp_i][hr_i] = 100*amp_meas/amp - 100
+            heart_rate_error_map[amp_i][hr_i] = np.mean(hr_error_list)
+            amplitude_error_map[amp_i][hr_i] = np.mean(amp_error_list)
 
-    return heart_rate_error_map, amplitude_error_map
+            heart_rate_error_map_sd[amp_i][hr_i] = np.std(hr_error_list)/np.sqrt(len(hr_error_list))
+            amplitude_error_map_sd[amp_i][hr_i] = np.std(amp_error_list)/np.sqrt(len(amp_meas_list))
+
+    return heart_rate_error_map, amplitude_error_map, heart_rate_error_map_sd, amplitude_error_map_sd
 
 
 
@@ -315,12 +357,12 @@ else:
 
 # Calcular errores de dataset de calibracion y grafico
 
-heart_rate_error_map, amplitude_error_map = calculate_error_maps(calib_labeled_measurements)
+heart_rate_error_map, amplitude_error_map, heart_rate_error_map_sd, amplitude_error_map_sd = calculate_error_maps(calib_labeled_measurements)
 
 heart_rates = sorted(list({x[0] for x in calib_labeled_measurements.keys()}))
 amplitudes = sorted(list({x[1] for x in calib_labeled_measurements.keys()}))
 
-calib_error_map_fig = plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rates, amplitudes, title="")
+calib_error_map_fig = plot_error_maps(heart_rate_error_map, amplitude_error_map, heart_rate_error_map_sd, amplitude_error_map_sd, heart_rates, amplitudes, title="")
 
 # Calculo factores de correccion y su incertidumbres
 
@@ -371,9 +413,9 @@ for items in test_labeled_measurements.items():
 
 # Genero mapa de error de dataset de prueba calibrado
 
-calibrated_heart_rate_error_map, calibrated_amplitude_error_map = calculate_error_maps(calibrated_labeled_measurements_test)
+calibrated_heart_rate_error_map, calibrated_amplitude_error_map, heart_rate_error_map_sd, amplitude_error_map_sd = calculate_error_maps(calibrated_labeled_measurements_test)
 
-test_error_map_fig = plot_error_maps(calibrated_heart_rate_error_map, calibrated_amplitude_error_map, heart_rates, amplitudes, title="")
+test_error_map_fig = plot_error_maps(calibrated_heart_rate_error_map, calibrated_amplitude_error_map, heart_rate_error_map_sd, amplitude_error_map_sd, heart_rates, amplitudes, title="")
 
 
 # Grafico correlaciones
@@ -387,8 +429,8 @@ heart_rate_corr_fig = plot_2correlations(heart_rates,
                             amplitude_err_vs_heart_rate,
                             "Frecuencia Cardíaca ($f$)",
                             "Error Relativo Promedio",
-                            "Error Frecuencia Cardíaca ($\delta_f$)",
-                            "Error Amplitud ($\delta_a$)",
+                            "Error Frecuencia Cardíaca ($\\delta_f$)",
+                            "Error Amplitud ($\\delta_a$)",
                             "Relación errores vs Frecuencia Cardíaca")
 
 
@@ -403,8 +445,8 @@ amplitude_corr_fig = plot_2correlations(amplitudes,
                             amplitude_err_vs_amplitude,
                             "Amplitud ($a$)",
                             "Error Relativo Promedio",
-                            "Error Frecuencia Cardíaca ($\delta_f$)",
-                            "Error Amplitud ($\delta_a$)",
+                            "Error Frecuencia Cardíaca ($\\delta_f$)",
+                            "Error Amplitud ($\\delta_a$)",
                             "Relación error vs Amplitud")
 
 

@@ -29,7 +29,7 @@ y Ramiro Germán Rodriguez Colmeiro por su apoyo durante el trabajo}
 Buenos Aires, Argentina \\
 bglecer@frba.utn.edu.ar
 }
-\and
+\and 
 \IEEEauthorblockN{2\textsuperscript{do} Jonathan Yujra}
 \IEEEauthorblockA{\textit{UTN - FRBA} \\
 Buenos Aires, Argentina \\
@@ -365,7 +365,7 @@ electrocardiógrafo.
 
 De las señales captadas se midieron dos parámetros para estudiar el rendimiento:
 
-Primero, la frecuencia cardiaca (que denotaremos $f$), este valor es un
+Primero, la frecuencia cardíaca (que denotaremos $f$), este valor es un
 parámetro biológico clave estudiado en la electrocardiografía, y además
 proporciona un valor que tiene una correlación perfectamente lineal con la base
 de tiempo del electrocardiógrafo, una posible fuente de error. Fue medido
@@ -378,13 +378,13 @@ los pulsos R y la amplitud promedio de los pulsos S, la cual denominamos $a$.
 Expresado algebraicamente: $a = V_R - V_S$.
 Las posiciones temporales de estos pulsos también fueron detectadas
 utilizando la función \texttt{ecg\_process} con el mismo método de detección de
-picos que su usó para obtener la frecuencia cardiaca. Este parámetro es útil,
+picos que su usó para obtener la frecuencia cardíaca. Este parámetro es útil,
 debido a que representa una buena medición de la amplitud pico a pico de la
 señal, ya que los pulsos S son los puntos más bajos de la señal y los pulsos R
 los más altos.
 
 La calibración se realizó para todas las combinaciones entre las frecuencias
-cardiacas de: 50, 75, 100, 200 y 250 latidos por minuto, y amplitudes de 0.002,
+cardíacas de: 50, 75, 100, 200 y 250 latidos por minuto, y amplitudes de 0.002,
 0.005, 0.01, 0.02 y 0.1 V. 
 Para cada una de estas combinaciones se realizaron 10 muestras de 10 segundos
 cada una, resultando en un total de 250 muestras. La mitad de estas muestras
@@ -439,24 +439,32 @@ manera:
 
 
 Donde $A$ y $F$ son respectivamente los conjuntos de amplitudes y frecuencias
-cardiacas utilizadas para calibrar. $\hat{f}_{(a,f,n)}$ y $\hat{a}_{(a,f,n)}$
+cardíacas utilizadas para calibrar. $\hat{f}_{(a,f,n)}$ y $\hat{a}_{(a,f,n)}$
 son el valor medido durante la calibración de la $n$-esima muestra para una
 amplitud de $a$ y frecuencia cardíaca de $f$. $N=125$ es la cantidad total de
-muestras medidas (5 frecuencias cardiacas, 5 amplitudes y 5 muestras por
+muestras medidas (5 frecuencias cardíacas, 5 amplitudes y 5 muestras por
 combinación).
 
 Una vez que se obtienen estos factores de calibración, se pueden utilizar para
 ajustar cualquier medición realizada con el electrocardiógrafo utilizando las
 siguientes conversiones:
-
+ 
 \begin{figure*}[t]
     \centering
     \includegraphics[width=\textwidth]{figs/calib_error_map.png}
-    \caption{Mapa de error de medición sin la calibración aplicada.}
-    \label{fig:plot_errpr_sin_calib}
+    \caption{Mapa de error de medición sin la calibración aplicada y su desvío 
+    estándar}
+    \label{fig:plot_error_sin_calib}
 \end{figure*}
 
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figs/test_error_map.png}
+    \caption{Mapa de error de medición con la calibración aplicada y su desvío 
+    estándar}
+    \label{fig:plot_error_con_calib}
 
+\end{figure*}
 
 \begin{equation}
     f' = \alpha_{T} f
@@ -518,15 +526,16 @@ cobertura $k = 2$, es decir, con una confianza del 95\%:
 
 $$U(\alpha) = k u(\alpha)$$
 
+
 \section{Resultados}
 
 
-\subsection{Parámetros de calibración}
+\subsection{Visualización de mediciones}
 
 
-La figura \ref{fig:plot_errpr_sin_calib} muestra para cada frecuencia y
-amplitud, el error relativo medio entre la medición de cada parámetro, y el
-esperado, sin aplicar ninguna calibración.
+Los dos gráficos superiores de la figura \ref{fig:plot_error_sin_calib} muestran
+para cada frecuencia y amplitud, el error relativo medio entre la medición de
+cada parámetro, y el esperado, sin aplicar ninguna calibración.
 Expresado algebraicamente, estos mapas muestran las siguientes funciones:
 
 $$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
@@ -537,12 +546,45 @@ $$ \delta_{a} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
 \left( \dfrac{\hat{a}(f,a,n)}{a} - 1\right)$$
 
 
+Los dos gráficos inferiores de la figura \ref{fig:plot_error_sin_calib}
+expresan el desvío estándar de cada uno de los errores de su gráfico superior
+correspondiente En otras palabras, expresan el error estándar de $\delta_{f}
+\left(f, a\right) $ y $\delta_{a} \left(f, a\right)$. Esto es calculado
+utilizando la expresión para el desvío de la media de una muestra:
+{\large
+\[
+ u_{\delta_f}(f,a) = \frac{s_f(f,a)}{\sqrt{5}}
+\]
+\[
+ u_{\delta_a}(f,a) = \frac{s_a(f,a)}{\sqrt{5}}
+\]
+}
+ 
+Donde $s(f, a)$ es el desvío estándar poblacional de los 5 valores de
+$\hat{f}(f,a, n)$ o $\hat{a}(f, a, n)$ para un $f$ y $a$ fijos.
+
+
+$$s_f(f,a) = \sqrt{ \frac{1}{5 - 1} \sum_{n=1}^{5}
+\left( \dfrac{\hat{f}(f,a,n)}{a} - 1 - \delta_{f} \left(f, a\right)
+\right)^2} $$
+ 
+
+$$s_a(f,a) = \sqrt{ \frac{1}{5 - 1} \sum_{n=1}^{5}
+\left( \dfrac{\hat{a}(f,a,n)}{a} - 1 - \delta_{a} \left(f, a\right)
+\right)^2} $$
+ 
+
 Analizando cualitativamente el gráfico de error de frecuencia cardíaca, vemos
 que este es muy consistente a lo largo de las frecuencias y amplitudes probadas,
 todos los valores de error están dentro de un rango del 1.6\% al 1.7\%.
 
 De lo contrario, vemos que el error de amplitud no es consistente y varía
 dependiendo de la frecuencia cardíaca.
+
+Se puede observar en los gráficos de desvío estándar que es muy uniforme
+excepto por algunas configuraciones de la medición de amplitud.
+
+\subsection{Factores de corrección}
 
 Utilizando las ecuaciones \ref{eqn:alpha_f}, \ref{eqn:alpha_a},
 \ref{eqn:alpha_f_u} y \ref{eqn:alpha_a_u} se obtienen los valores de los
@@ -554,15 +596,10 @@ $$ \alpha_{T} = 1.01692 \pm 0.00088 $$
 $$ \alpha_{A} = 0.969 \pm 0.048 $$
 \unboldmath  
 
+La alta variabilidad del error de amplitud se puede ver reflejado en la
+mayor incertidumbre de $\alpha_{A}$ comparado con la de $\alpha_{T}$.
+
 \subsection{Rendimiento de la calibración}
-
-\begin{figure*}[t]
-    \centering
-    \includegraphics[width=\textwidth]{figs/test_error_map.png}
-    \caption{Mapa de error de medición con la calibración aplicada.}
-    \label{fig:plot_errpr_con_calib}
-
-\end{figure*}
 
 Una vez obtenido los factores de corrección, estos valores se pueden utilizar
 para refinar el desempeño del electrocardiógrafo. Procedemos a
@@ -571,7 +608,7 @@ adicional de aplicar los factores de corrección previo al análisis de las
 señales.
 
 Al igual que para la calibración, graficamos el error relativo en función de 
-la frecuencia cardíaca y amplitud, pero para estas mediciones corregimos por
+la frecuencia cardíaca y amplitud, pero para estas mediciones corregimos
 utilizando los factores de calibración obtenidos. Expresado algebraicamente:
 
 $$ \delta_{f} \left(f, a\right) = 100 \% ~ \cdot \dfrac{1}{5} \sum_{n=1}^{5}
@@ -586,7 +623,7 @@ corresponden a otro conjunto de mediciones a los que se utilizaron para la
 calibración.
 
 Esto resulta en el mapa de error visualizado en la figura
-\ref{fig:plot_errpr_con_calib}.
+\ref{fig:plot_error_con_calib}.
 
 Los errores de la frecuencia cardíaca se encuentran dentro de un rango del
 -0.04\% al 0.02\%, mientras que los errores de amplitud tienen más dispersión y,
@@ -595,6 +632,9 @@ correlación entre error y frecuencia cardíaca que se observó previo a la
 calibración. Los errores de este parámetro existen en el rango de -3.6\% al
 2.9\%.
  
+\newpage
+
+
 \section{Medición de una señal ECG real}
 
 
@@ -624,28 +664,42 @@ proyecto.
 \section{Conclusiones}
 
 Analizando el error de frecuencia cardíaca previo a la calibración se puede
-observar en el mapa de error de la figura \ref{fig:plot_errpr_con_calib} que no
-varía dependiendo de frecuencia cardiaca ni de la amplitud. Esto es un indicador
+observar en el mapa de error de la figura \ref{fig:plot_error_con_calib} que no
+varía dependiendo de frecuencia cardíaca ni de la amplitud. Esto es un indicador
 fuerte de que la fuente de esta diferencia es la frecuencia a la que el ADC se
 encuentra muestreando. Un estudio del microcontrolador podría dar más
 información al respecto. Luego de la calibración, el error de frecuencia
-cardiaca permanece debajo del 0.04\%, una cifra muy buena indicando consistencia
+cardíaca permanece debajo del 0.04\%, una cifra muy buena indicando consistencia
 entre diferentes condiciones de medición.
 
+Observando los errores estándar de $\delta_f$ y $\delta_a$ en
+\ref{fig:plot_error_sin_calib} y \ref{fig:plot_error_con_calib} se pueden
+ver algunos valores atípicos concentrados en las mediciones con la calibración
+aplicada. Esto se puede deber a ruido o un falso contacto durante el
+proceso de medición. También se puede deber al comportamiento esporádico de
+las funciones de análisis de la librería neurokit2.
+
 En términos de la amplitud, se puede observar una correlación negativa del valor
-medido con la frecuencia cardiaca, esto puede ser un indicio de que la señal
+medido con la frecuencia cardíaca, esto puede ser un indicio de que la señal
 alcanza su valor pico entre dos muestras del ADC. El comportamiento esperado de
-esta situación es que disminuya con un incremento de frecuencia, que es
-precisamente lo que se observa que sucede.
+esta situación es que disminuya con un incremento de frecuencia cardíaca,
+que es precisamente lo que se observa que sucede.
 
 Otro valor de interés para observar es la incertidumbre de los factores de
 corrección. Como es de esperar, la incertidumbre relativa de $\alpha_T$ es
 extremadamente bajo, alrededor de 0.08\%, indicando que las mediciones de tiempo
 son muy precisas. En cambio, la incertidumbre relativa de $\alpha_A$ es
 aproximadamente 11\%. Esto se refleja también en el rango de errores observados
-en la figura \ref{fig:plot_errpr_con_calib} donde el error de la frecuencia cardíaca varía entre
+en la figura \ref{fig:plot_error_con_calib} donde el error de la frecuencia cardíaca varía entre
 -0.04\% y 0.02\%, mientras que el error de la amplitud varía entre -3.55\%
 y 2.96\%.
+
+Para lograr una mayor reducción del error de medición, es necesario mejorar
+el método de calibración utilizado. La dependencia del error de amplitud
+con la frecuencia cardíaca es indicativo de que un mejor método podría
+consistir en hallar varios parámetros de corrección para distintas frecuencias
+y aplicarlos  en función de la frecuencia cardíaca medida.
+
 
 La prueba de medición de una señal ECG real resultó sorprendentemente exitosa,
 la visualización de la señal permite identificar con claridad los pulsos P, R, S
@@ -663,6 +717,7 @@ profesional o utilizando el equipo en otros pacientes.
     \label{fig:ubicacion_electrodos}
 \end{figure}
 
+\newpage
 
 \bibliographystyle{IEEEtran}
 
